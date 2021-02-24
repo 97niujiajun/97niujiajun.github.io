@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="../../../../lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="../../../../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="../../../../css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../../images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../../images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../../images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="../../../../images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JAVA,思考," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.TCP长连接和短连接TCP在真正的读写操作之前，server与client之间必须建立一个连接，当读写操作完成后，双方不再需要这个连接时它们可以释放这个连接，连接的建立通过三次握手，释放则需要四次握手，所以说每个连接的建立都是需要资源消耗和时间消耗的。 也就是报文里的Connection：是否持久连接。 长连接：建立连接——数据传输…（保持连接）…数据传输——关闭连接 短连接：建立连接——">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP连接的问题">
+<meta property="og:url" content="http://example.com/2021/02/24/TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Niu_Blog">
+<meta property="og:description" content="1.TCP长连接和短连接TCP在真正的读写操作之前，server与client之间必须建立一个连接，当读写操作完成后，双方不再需要这个连接时它们可以释放这个连接，连接的建立通过三次握手，释放则需要四次握手，所以说每个连接的建立都是需要资源消耗和时间消耗的。 也就是报文里的Connection：是否持久连接。 长连接：建立连接——数据传输…（保持连接）…数据传输——关闭连接 短连接：建立连接——">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/02/24/TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/20190403220350563.png">
+<meta property="og:image" content="http://example.com/2021/02/24/TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/20190403220410773.png">
+<meta property="og:image" content="http://example.com/2021/02/24/TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/20180717204202563.png">
+<meta property="article:published_time" content="2021-02-24T08:49:48.000Z">
+<meta property="article:modified_time" content="2021-02-24T09:03:30.822Z">
+<meta property="article:author" content="NiuJiaJun">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="思考">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/02/24/TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/20190403220350563.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/02/24/TCP连接的问题/"/>
+
+
+
+
+
+  <title>TCP连接的问题 | Niu_Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Niu_Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="../../../../images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Niu_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCP连接的问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-24T16:49:48+08:00">
+                2021-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="../../../../categories/JAVAEE/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVAEE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <br>
+
+<h2 id="1-TCP长连接和短连接"><a href="#1-TCP长连接和短连接" class="headerlink" title="1.TCP长连接和短连接"></a>1.TCP长连接和短连接</h2><p>TCP在真正的读写操作之前，server与client之间必须建立一个连接，当读写操作完成后，双方不再需要这个连接时它们可以释放这个连接，连接的建立通过三次握手，释放则需要四次握手，所以说每个连接的建立都是需要资源消耗和时间消耗的。</p>
+<p>也就是报文里的Connection：是否持久连接。</p>
+<p>长连接：建立连接——数据传输…（保持连接）…数据传输——关闭连接</p>
+<p>短连接：建立连接——数据传输——关闭连接…建立连接——数据传输——关闭连接</p>
+<h3 id="优点和缺点"><a href="#优点和缺点" class="headerlink" title="优点和缺点"></a>优点和缺点</h3><ul>
+<li><p>长连接可以省去较多的TCP建立和关闭的操作，减少浪费，节约时间。对于频繁请求资源的客户来说，较适用长连接。</p>
+</li>
+<li><p>client与server之间的连接如果一直不关闭的话，会存在一个问题，随着客户端连接越来越多，server早晚有扛不住的时候，这时候server端需要采取一些策略，如关闭一些长时间没有读写事件发生的连接，这样可以避免一些恶意连接导致server端服务受损；如果条件再允许就可以以客户端机器为颗粒度，限制每个客户端的最大长连接数，这样可以完全避免某个蛋疼的客户端连累后端服务。</p>
+</li>
+<li><p>短连接对于服务器来说管理较为简单，存在的连接都是有用的连接，不需要额外的控制手段。</p>
+</li>
+<li><p>但如果客户请求频繁，将在TCP的建立和关闭操作上浪费时间和带宽。</p>
+</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li><p>长连接多用于操作频繁，点对点的通讯，而且连接数不能太多情况。每个TCP连接都需要三次握手，这需要时间，如果每个操作都是先连接，再操作的话那么处理速度会降低很多，所以每个操作完后都不断开，再次处理时直接发送数据包就OK了，不用建立TCP连接。</p>
+<p>例如：数据库的连接用长连接，如果用短连接频繁的通信会造成socket错误，而且频繁的socket 创建也是对资源的浪费。</p>
+</li>
+<li><p>而像WEB网站的http服务一般都用短链接，因为长连接对于服务端来说会耗费一定的资源，而像WEB网站这么频繁的成千上万甚至上亿客户端的连接用短连接会更省一些资源，如果用长连接，而且同时有成千上万的用户，如果每个用户都占用一个连接的话，那可想而知吧。所以并发量大，但每个用户无需频繁操作情况下需用短连好。</p>
+</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="2-什么是三次握手？"><a href="#2-什么是三次握手？" class="headerlink" title="2.什么是三次握手？"></a>2.什么是三次握手？</h2><p>在 <em>http</em> 工作开始之前，浏览器首先要通过网络与服务器建立连接，该连接是通过 <em>TCP</em> 来完成的。该协议与 <em>IP</em> 协议共同构建 <strong>Internet</strong> ，即著名的 <em>TCP/IP</em> 协议族，因此 <em>Internet</em> 又被称作是 <em>TCP/IP</em> 网络。 <strong>http 是比 TCP更高层次的应用层协议</strong>。根据规则，只有低层协议建立之后才能进行更高次层协议的连接。因此，首先要建立 <em>TCP</em> 连接，一般 <em>TCP</em> 连接的端口号是 <em>80</em> 。在 <em>TCP/IP</em> 协议中，<em>TCP</em> 协议提供可靠的连接服务，采用三次握手建立一个连接：</p>
+<p><img src="/2021/02/24/TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/20190403220350563.png" alt="img"></p>
+<ol>
+<li>第一次握手：建立连接时，客户端发送 <em>SYN</em> 包<em>（syn=j）</em>到服务器，并进入 <em>SYN_SENT</em> 状态，等待服务器确认；<strong>SYN：同步序列编号（Synchronize Sequence Numbers）是TCP/IP建立连接时使用的握手信号</strong></li>
+<li>第二次握手：服务器收到 <em>SYN</em> 包，必须确认客户的 <em>SYN（ack=j+1）</em>，同时自己也发送一个 <em>SYN</em> 包<em>（syn=k）</em>，即 <em>SYN+ACK</em> 包，此时服务器进入 <em>SYN_RECV</em> 状态；</li>
+<li>第三次握手：客户端收到服务器的 <em>SYN+ACK</em> 包，向服务器发送确认包 <em>ACK(ack=k+1）</em>，此包发送完毕，客户端和服务器进入 <em>ESTABLISHED（TCP连接成功）</em>状态，完成三次握手。</li>
+</ol>
+<p>完成三次握手，客户端与服务器建立了TCP连接，开始传送数据。</p>
+<br>
+
+<br>
+
+<h2 id="3-什么是四次挥手？"><a href="#3-什么是四次挥手？" class="headerlink" title="3.什么是四次挥手？"></a>3.什么是四次挥手？</h2><p><img src="/2021/02/24/TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/20190403220410773.png" alt="img"></p>
+<p><strong>注意：</strong>四次挥手不一定在服务器响应浏览器请求后出现，只有不再发送请求了才进行挥手操作。</p>
+<ol>
+<li>下面对四次挥手的过程进行总结：<br>1，<strong>（我客户端已经没有话跟你说了）</strong> 当client所要发送的数据发送完毕之后（这里是接收到了来自于server方的，对于clien发送的最后一个数据包的收到确认ACK包之后），向server请求关闭连接，因此client向server发送一个FIN数据包，表明client数据发送完了，申请断开。并且自身进入*<strong>等待结束连接状态FIN_WAIT-1*</strong><br>2，<strong>（我服务器知道你没话说了，但是你等等我，我不确定是否没话跟你说了，等我的回复）</strong>当server收到了来自client的FIN请求包之后，向client回复一个确认报文ACK，同时进入关闭等待状态（CLOSE -WAIT），这时TCP连接的server便会向上层应用发送通知，表明client数据发送完毕，是否需要发送数据给client，这时TCP连接已经处于半关闭状态了，因为client已经没有数据要发送了。同时client收到了来自server的确认报文之后，便会进入*<strong>FIN-WAIT-2状态*</strong>。<br>3，<strong>（我服务器的上层应用也没话说了，咱们可以断开连接了）</strong> TCP连接的server收到上层应用的指令表明没有数据要发送之后，会向client发送一个FIN请求数据包，其中确认位ACK=1，表明响应client的关闭连接请求，同时FIN=1表明server也准备好断开TCP连接了。<br>4，<strong>（好的，那么咱们断开连接吧）</strong>client收到了来自server的FIN数据包之后，知道server已经准备好断开连接了，于是向server发送一个确认数据包ACK，告诉server，可以关闭资源断开连接了。同时自身进入TIME-WAIT阶段，这个阶段将持续2MSL（MSL：报文在网络链路中的最长生命时长），在等待2MSL之后，client将会关闭资源。<br>5，serve日收到了来自于client的最后一个确认断开连接数据包之后便会直接进入TCP关闭状态，进行资源的回收。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">URG</td>
+<td align="left">紧急指针是否有效。为1，表示某一位需要被优先处理</td>
+</tr>
+<tr>
+<td align="left">ACK</td>
+<td align="left">确认号是否有效，一般置为1。</td>
+</tr>
+<tr>
+<td align="left">PSH</td>
+<td align="left">提示接收端应用程序立即从TCP缓冲区把数据读走。</td>
+</tr>
+<tr>
+<td align="left">RST</td>
+<td align="left">对方要求重新建立连接，复位。</td>
+</tr>
+<tr>
+<td align="left">SYN</td>
+<td align="left">请求建立连接，并在其序列号的字段进行序列号的初始值设定。建立连接，设置为1</td>
+</tr>
+<tr>
+<td align="left">FIN</td>
+<td align="left">希望断开连接。</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="4-为什么需要第三次握手？"><a href="#4-为什么需要第三次握手？" class="headerlink" title="4.为什么需要第三次握手？"></a><strong>4.为什么需要第三次握手？</strong></h2><p>如果没有第三次握手，可能会出现如下情况：</p>
+<ul>
+<li>如果只有两次握手，那么server收到了client的<strong>SYN=1的请求连接数据包</strong>之后，便会分配资源并且向client发送一个<strong>确认位ACK回复数据包</strong>。</li>
+<li>那么，如果在client与server建立连接的过程中，由于网络不顺畅等原因造成的通信链路中存在着残留数据包，即client向server发送的请求建立连接的数据包由于数据链路的拥塞或者质量不佳导致该连接请求数据包仍然在网络的链路中，这些残留数据包会造成如下危害</li>
+<li><strong>危害：</strong>当client与server建立连接，数据发送完毕并且关闭TCP连接之后，如果链路中的残留数据包才到达server，那么server就会认为client重新发送了一次连接申请，便会回复ACK包并且分配资源。并且一直等待client发送数据，这就会造成<strong>server的资源浪费。</strong></li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="5-为什么连接的时候是三次握手，关闭的时候却是四次握手？"><a href="#5-为什么连接的时候是三次握手，关闭的时候却是四次握手？" class="headerlink" title="5.为什么连接的时候是三次握手，关闭的时候却是四次握手？"></a>5.为什么连接的时候是三次握手，关闭的时候却是四次握手？</h2><p>前两次挥手是为了断开client至server的连接，后两次挥手是为了断开server至client的连接，如果没有第四次挥手，会出现如下状况：</p>
+<ol>
+<li>server发送FIN数据包并携带ACK至client之后直接断开连接，如果client没有收到这个FIN数据包，那么client会一直处于等待关闭状态，这是为了确保TCP协议是面向连接安全有保证锝。</li>
+<li>上面解释了为什么不是三次挥手，同理，两次挥手也是不安全的。不能保证server与client都能正确关闭连接释放资源，而不会造成资源浪费。</li>
+</ol>
+<br>
+
+<br>
+
+<h2 id="6-为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？"><a href="#6-为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？" class="headerlink" title="6.为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？"></a>6.为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</h2><p><img src="/2021/02/24/TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/20180717204202563.png" alt="img"></p>
+<p>答：虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假象网络是不可靠的，有可以最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。在Client发送出最后的ACK回复，但该ACK可能丢失。Server如果没有收到ACK，将不断重复发送FIN片段。所以Client不能立即关闭，它必须确认Server接收到了该ACK。Client会在发送出ACK之后进入到TIME_WAIT状态。Client会设置一个计时器，等待2MSL的时间。如果在该时间内再次收到FIN，那么Client会重发ACK并再次等待2MSL。所谓的2MSL是两倍的MSL(Maximum Segment Lifetime)。MSL指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
+<br>
+
+<br>
+
+<h2 id="7-如果已经建立了连接，但是客户端突然出现故障了怎么办？"><a href="#7-如果已经建立了连接，但是客户端突然出现故障了怎么办？" class="headerlink" title="7.如果已经建立了连接，但是客户端突然出现故障了怎么办？"></a>7.如果已经建立了连接，但是客户端突然出现故障了怎么办？</h2><p>TCP还设有一个保活计时器，显然，客户端如果出现故障，服务器不能一直等下去，白白浪费资源。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
+<br>
+
+<br>
+
+<h2 id="8-三次握手过程中可以携带数据吗？"><a href="#8-三次握手过程中可以携带数据吗？" class="headerlink" title="8.三次握手过程中可以携带数据吗？"></a>8.三次握手过程中可以携带数据吗？</h2><p>其实第三次握手的时候，是可以携带数据的。但是，<strong>第一次、第二次握手不可以携带数据</strong></p>
+<p>为什么这样呢?大家可以想一个问题，假如第一次握手可以携带数据的话，如果有人要恶意攻击服务器，那他每次都在第一次握手中的 SYN 报文中放入大量的数据。因为攻击者根本就不理服务器的接收、发送能力是否正常，然后疯狂着重复发 SYN 报文的话，这会让服务器花费很多时间、内存空间来接收这些报文。</p>
+<p>也就是说，<strong>第一次握手不可以放数据，其中一个简单的原因就是会让服务器更加容易受到攻击了。而对于第三次的话，此时客户端已经处于 ESTABLISHED 状态。对于客户端来说，他已经建立起连接了，并且也已经知道服务器的接收、发送能力是正常的了，所以能携带数据也没啥毛病。</strong></p>
+<br>
+
+<br>
+
+<h2 id="9-第三次握手失败了怎么办？"><a href="#9-第三次握手失败了怎么办？" class="headerlink" title="9.第三次握手失败了怎么办？"></a>9.第三次握手失败了怎么办？</h2><p>当client与server的第三次握手失败了之后，即client发送至server的确认建立连接报文段未能到达server，server在等待client回复ACK的过程中超时了，那么server会向client发送一个RTS报文段并进入关闭状态，即：并不等待client第三次握手的ACK包重传，直接关闭连接请求，这主要是为了防止泛洪攻击，即坏人伪造许多IP向server发送连接请求，从而将server的未连接队列塞满，浪费server的资源。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../../../../tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="../../../../tags/%E6%80%9D%E8%80%83/" rel="tag"># 思考</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="../HTTP%E8%AF%B7%E6%B1%82/" rel="prev" title="HTTP请求">
+                HTTP请求 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="../../../../archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="../../../../categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="../../../../tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/97niujiajun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/niujiajun" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-github"></i>Gitee</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:niujiajun97@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:623590794@qq.com" target="_blank" title="Q-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>Q-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-TCP%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%92%8C%E7%9F%AD%E8%BF%9E%E6%8E%A5"><span class="nav-text">1.TCP长连接和短连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="nav-text">优点和缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="nav-text">2.什么是三次握手？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%9F"><span class="nav-text">3.什么是四次挥手？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%AC%AC%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="nav-text">4.为什么需要第三次握手？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%97%B6%E5%80%99%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E5%85%B3%E9%97%AD%E7%9A%84%E6%97%B6%E5%80%99%E5%8D%B4%E6%98%AF%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="nav-text">5.为什么连接的时候是三次握手，关闭的时候却是四次握手？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E4%B8%BA%E4%BB%80%E4%B9%88TIME-WAIT%E7%8A%B6%E6%80%81%E9%9C%80%E8%A6%81%E7%BB%8F%E8%BF%872MSL-%E6%9C%80%E5%A4%A7%E6%8A%A5%E6%96%87%E6%AE%B5%E7%94%9F%E5%AD%98%E6%97%B6%E9%97%B4-%E6%89%8D%E8%83%BD%E8%BF%94%E5%9B%9E%E5%88%B0CLOSE%E7%8A%B6%E6%80%81%EF%BC%9F"><span class="nav-text">6.为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%A6%82%E6%9E%9C%E5%B7%B2%E7%BB%8F%E5%BB%BA%E7%AB%8B%E4%BA%86%E8%BF%9E%E6%8E%A5%EF%BC%8C%E4%BD%86%E6%98%AF%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AA%81%E7%84%B6%E5%87%BA%E7%8E%B0%E6%95%85%E9%9A%9C%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-text">7.如果已经建立了连接，但是客户端突然出现故障了怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%AF%E4%BB%A5%E6%90%BA%E5%B8%A6%E6%95%B0%E6%8D%AE%E5%90%97%EF%BC%9F"><span class="nav-text">8.三次握手过程中可以携带数据吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%AC%AC%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%A4%B1%E8%B4%A5%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-text">9.第三次握手失败了怎么办？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiuJiaJun</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+-->
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../../../../js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../../../../js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="../../../../js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../../../../js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="../../../../js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="../../../../js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="../../../../js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
