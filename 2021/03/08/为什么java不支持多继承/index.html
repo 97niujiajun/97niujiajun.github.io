@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="PTA乙级," />
+  <meta name="keywords" content="思考," />
 
 
 
@@ -80,18 +80,20 @@
 
 
 
-<meta name="description" content="1003 我要通过！“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于 PAT 的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。 得到“答案正确”的条件是：  字符串中必须仅有 P、 A、 T这三种字符，不可以包含其它字符； 任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符">
+<meta name="description" content="继承面向对象的编程语言有三个重要的基本特性：封装、继承和多态。而很多人认为继承是Java面向对象编程技术的一块基石。 继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的属性和方法，或子类从父类继承方法，使得子类具有父类相同的行为。 Java继承是使用已存在的类的定义作为基础建立新类的技术，新类的定义可以增加新的数据或新的功能，也可以用父类的功能，但不能选择性地继承父类。 在Java中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PTA乙级1003我要通过！">
-<meta property="og:url" content="http://example.com/2021/02/24/PTA%E4%B9%99%E7%BA%A71003%E6%88%91%E8%A6%81%E9%80%9A%E8%BF%87!/index.html">
+<meta property="og:title" content="为什么java不支持多继承?">
+<meta property="og:url" content="http://example.com/2021/03/08/%E4%B8%BA%E4%BB%80%E4%B9%88java%E4%B8%8D%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BB%A7%E6%89%BF/index.html">
 <meta property="og:site_name" content="Niu_Blog">
-<meta property="og:description" content="1003 我要通过！“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于 PAT 的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。 得到“答案正确”的条件是：  字符串中必须仅有 P、 A、 T这三种字符，不可以包含其它字符； 任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符">
+<meta property="og:description" content="继承面向对象的编程语言有三个重要的基本特性：封装、继承和多态。而很多人认为继承是Java面向对象编程技术的一块基石。 继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的属性和方法，或子类从父类继承方法，使得子类具有父类相同的行为。 Java继承是使用已存在的类的定义作为基础建立新类的技术，新类的定义可以增加新的数据或新的功能，也可以用父类的功能，但不能选择性地继承父类。 在Java中">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-02-24T12:00:42.000Z">
-<meta property="article:modified_time" content="2021-02-24T12:20:45.553Z">
+<meta property="og:image" content="http://example.com/2021/03/08/%E4%B8%BA%E4%BB%80%E4%B9%88java%E4%B8%8D%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BB%A7%E6%89%BF/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png">
+<meta property="article:published_time" content="2021-03-08T00:12:16.000Z">
+<meta property="article:modified_time" content="2021-03-08T00:29:21.065Z">
 <meta property="article:author" content="NiuJiaJun">
-<meta property="article:tag" content="PTA乙级">
+<meta property="article:tag" content="思考">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/03/08/%E4%B8%BA%E4%BB%80%E4%B9%88java%E4%B8%8D%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BB%A7%E6%89%BF/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png">
 
 
 
@@ -121,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/02/24/PTA乙级1003我要通过!/"/>
+  <link rel="canonical" href="http://example.com/2021/03/08/为什么java不支持多继承/"/>
 
 
 
 
 
-  <title>PTA乙级1003我要通过！ | Niu_Blog</title>
+  <title>为什么java不支持多继承? | Niu_Blog</title>
   
 
 
@@ -264,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/24/PTA%E4%B9%99%E7%BA%A71003%E6%88%91%E8%A6%81%E9%80%9A%E8%BF%87!/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/%E4%B8%BA%E4%BB%80%E4%B9%88java%E4%B8%8D%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BB%A7%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -281,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PTA乙级1003我要通过！</h1>
+          <h1 class="post-title" itemprop="name headline">为什么java不支持多继承?</h1>
         
 
         <div class="post-meta">
@@ -293,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-24T20:00:42+08:00">
-                2021-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-08T08:12:16+08:00">
+                2021-03-08
               </time>
             
 
@@ -316,8 +318,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" itemprop="url" rel="index">
-                    <span itemprop="name">每日一题</span>
+                  <a href="/categories/JAVASE/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVASE</span>
                   </a>
                 </span>
 
@@ -353,22 +355,52 @@
       
 
       
-        <h4 id="1003-我要通过！"><a href="#1003-我要通过！" class="headerlink" title="1003 我要通过！"></a><center>1003 我要通过！</center></h4><p>“<strong>答案正确</strong>”是自动判题系统给出的最令人欢喜的回复。本题属于 PAT 的“<strong>答案正确</strong>”大派送 —— 只要读入的字符串满足下列条件，系统就输出“<strong>答案正确</strong>”，否则输出“<strong>答案错误</strong>”。</p>
-<p>得到“<strong>答案正确</strong>”的条件是：</p>
-<ol>
-<li>字符串中必须仅有 <code>P</code>、 <code>A</code>、 <code>T</code>这三种字符，不可以包含其它字符；</li>
-<li>任意形如 <code>xPATx</code> 的字符串都可以获得“<strong>答案正确</strong>”，其中 <code>x</code> 或者是空字符串，或者是仅由字母 <code>A</code> 组成的字符串；</li>
-<li>如果 <code>aPbTc</code> 是正确的，那么 <code>aPbATca</code> 也是正确的，其中 <code>a</code>、 <code>b</code>、 <code>c</code> 均或者是空字符串，或者是仅由字母 <code>A</code> 组成的字符串。</li>
-</ol>
-<p>现在就请你为 PAT 写一个自动裁判程序，判定哪些字符串是可以获得“<strong>答案正确</strong>”的。</p>
-<h6 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h6><p>每个测试输入包含 1 个测试用例。第 1 行给出一个正整数 <em>n</em> (&lt;10)，是需要检测的字符串个数。接下来每个字符串占一行，字符串长度不超过 100，且不包含空格。</p>
-<h6 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h6><p>每个字符串的检测结果占一行，如果该字符串可以获得“<strong>答案正确</strong>”，则输出 <code>YES</code>，否则输出 <code>NO</code>。</p>
-<h6 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">8</span><br><span class="line">PAT</span><br><span class="line">PAAT</span><br><span class="line">AAPATAA</span><br><span class="line">AAPAATAAAA</span><br><span class="line">xPATx</span><br><span class="line">PT</span><br><span class="line">Whatever</span><br><span class="line">APAAATAA</span><br></pre></td></tr></table></figure>
+        <h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>面向对象的编程语言有三个重要的基本特性：封装、继承和多态。而很多人认为继承是Java面向对象编程技术的一块基石。</p>
+<p>继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的属性和方法，或子类从父类继承方法，使得子类具有父类相同的行为。</p>
+<p>Java继承是使用已存在的类的定义作为基础建立新类的技术，新类的定义可以增加新的数据或新的功能，也可以用父类的功能，但不能选择性地继承父类。</p>
+<p>在Java中，使用extends关键字来实现继承。</p>
+<br>
 
-<h6 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">YES</span><br><span class="line">YES</span><br><span class="line">YES</span><br><span class="line">YES</span><br><span class="line">NO</span><br><span class="line">NO</span><br><span class="line">NO</span><br><span class="line">NO</span><br></pre></td></tr></table></figure>
+<h1 id="多继承"><a href="#多继承" class="headerlink" title="多继承"></a>多继承</h1><p>在软件开发中，还有一种多继承（多重继承）的情况，顾名思义，就是一个类同时继承自多个父类。</p>
+<p>作为面向对象语言，C++是支持多重继承的。</p>
+<p>但是，多年以来，多重继承一直都是一个敏感的话题，反对者指它增加了程序的复杂性与含糊性。</p>
+<br>
 
-<h6 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">关键是搞懂题目，（P之前的A）*（P与T之间的A）=（T后面的A）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> n = sc.nextInt();</span><br><span class="line">        String str[] = <span class="keyword">new</span> String[n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            str[i] = sc.next();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            System.out.println(StrTrueOrFalse(str[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//s.charAt(1)是：s为字符串，输出字符串位置为1的数。 </span></span><br><span class="line">    <span class="comment">//可str[1].charAt(1)即为数组位置为一的位置为一的字符</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">StrTrueOrFalse</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> NumA=<span class="number">0</span>,NumP=<span class="number">0</span>,NumT=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> PosP=<span class="number">0</span>,PosT=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">&#x27;A&#x27;</span>)&#123;</span><br><span class="line">                NumA++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">&#x27;P&#x27;</span>)&#123;</span><br><span class="line">                NumP++;</span><br><span class="line">                PosP=i;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">&#x27;T&#x27;</span>)&#123;</span><br><span class="line">                NumT++;</span><br><span class="line">                PosT=i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(NumA+NumP+NumT==s.length() &amp;&amp; NumA!=<span class="number">0</span> &amp;&amp; NumP==<span class="number">1</span> &amp;&amp; NumT==<span class="number">1</span> &amp;&amp; PosT-PosP&gt;<span class="number">1</span> &amp;&amp; PosP*(PosT-PosP-<span class="number">1</span>)==s.length()-PosT-<span class="number">1</span> )&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;YES&quot;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;NO&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Java不支持多继承"><a href="#Java不支持多继承" class="headerlink" title="Java不支持多继承"></a>Java不支持多继承</h1><p>很多人知道，Java是不支持多重继承的，这里要提一下，这里的继承特指的是使用extends关键字的这种继承行为。</p>
+<p>那么为什么Java不支持多重继承呢？</p>
+<p>关于这个问题，Java的创始人James Gosling曾经回答过，他表示：</p>
+<p>“Java之所以不支持一个类继承多个类，主要是因为在设计之初我们听取了来自C++和Objective-C登阵营的人的意见。因为多继承会产生很多歧义问题。”</p>
+<p>Gosling老人家提到的歧义问题，其实是C++因为支持多继承之后带来的<strong>菱形继承问题</strong>。</p>
+<p>假设我们有类B和类C，它们都继承了相同的类A。另外我们还有类D，类D通过多重继承机制继承了类B和类C。</p>
+<p><img src="/2021/03/08/%E4%B8%BA%E4%BB%80%E4%B9%88java%E4%B8%8D%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BB%A7%E6%89%BF/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png" alt="未命名文件">   </p>
+<p>这时候，因为D同时继承了B和C，并且B和C又同时继承了A，那么，D中就会因为多重继承，继承到两份来自A中的属性和方法。</p>
+<p>这时候，在使用D的时候，如果想要调用一个定义在A中的方法时，就会出现歧义。</p>
+<p>因为这样的继承关系的形状类似于菱形，因此这个问题被形象地称为菱形继承问题。</p>
+<p>而C++为了解决菱形继承问题，又引入了<strong>虚继承</strong>。</p>
+<p>因为支持多继承，引入了菱形继承问题，又因为要解决菱形继承问题，引入了虚继承。而经过分析，人们发现我们其实真正想要使用多继承的情况并不多。</p>
+<p>所以，在 Java 中，不允许“实现多继承”，即一个类不允许继承多个父类。但是 Java 允许“声明多继承”，即一个类可以实现多个接口，一个接口也可以继承多个父接口。由于接口只允许有方法声明而不允许有方法实现（Java 8之前），这就避免了 C++ 中多继承的歧义问题。</p>
+<br>
 
+<h1 id="Java-8支持多继承"><a href="#Java-8支持多继承" class="headerlink" title="Java 8支持多继承"></a>Java 8支持多继承</h1><p>Java不支持多继承，但是是支持多实现的，也就是说，同一个类可以同时实现多个类。</p>
+<p>我们知道，在Java 8以前，接口中是不能有方法的实现的。所以一个类同时实现多个接口的话，也不会出现C++中的歧义问题。因为所有方法都没有方法体，真正的实现还是在子类中的。</p>
+<p>那么问题来了。</p>
+<p>Java 8中支持了默认函数（default method ），即接口中可以定义一个有方法体的方法了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Pet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Pet Is Eating&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而又因为Java支持同时实现多个接口，这就相当于通过implements就可以从多个接口中继承到多个方法了，这不就是变相支持了多继承么。</p>
+<p>那么，Java是怎么解决菱形继承问题的呢？我们再定义一个哺乳动物接口，也定义一个eat方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Mammal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Mammal Is Eating&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后定义一个Cat，让他分别实现两个接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">implements</span> <span class="title">Pet</span>,<span class="title">Mammal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候，编译期会报错：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="title">inherits</span> <span class="title">unrelated</span> <span class="title">defaults</span> <span class="title">for</span> <span class="title">eat</span>() <span class="title">from</span> <span class="title">types</span> <span class="title">Mammal</span> <span class="title">and</span> <span class="title">Pet</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这时候，就要求Cat类中，必须重写eat()方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">implements</span> <span class="title">Pet</span>,<span class="title">Mammal</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Cat Is Eating&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以可以看到，Java并没有帮我们解决多继承的歧义问题，而是把这个问题留给开发人员，通过重写方法的方式自己解决。</p>
 
       
     </div>
@@ -386,7 +418,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PTA%E4%B9%99%E7%BA%A7/" rel="tag"># PTA乙级</a>
+            <a href="/tags/%E6%80%9D%E8%80%83/" rel="tag"># 思考</a>
           
         </div>
       
@@ -399,8 +431,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/02/24/PTA%E4%B9%99%E7%BA%A71002%E5%86%99%E5%87%BA%E8%BF%99%E4%B8%AA%E6%95%B0/" rel="next" title="PTA乙级1002写出这个数">
-                <i class="fa fa-chevron-left"></i> PTA乙级1002写出这个数
+              <a href="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/" rel="next" title="Maven详解(二):第一个程序">
+                <i class="fa fa-chevron-left"></i> Maven详解(二):第一个程序
               </a>
             
           </div>
@@ -408,10 +440,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/02/24/PTA%E4%B9%99%E7%BA%A71004%E6%88%90%E7%BB%A9%E6%8E%92%E5%90%8D/" rel="prev" title="PTA乙级1004成绩排名">
-                PTA乙级1004成绩排名 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -571,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1003-%E6%88%91%E8%A6%81%E9%80%9A%E8%BF%87%EF%BC%81"><span class="nav-text">1003 我要通过！</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="nav-text">输出格式：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B%EF%BC%9A"><span class="nav-text">输出样例：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-text">题解</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-text">继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E7%BB%A7%E6%89%BF"><span class="nav-text">多继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E4%B8%8D%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BB%A7%E6%89%BF"><span class="nav-text">Java不支持多继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-8%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BB%A7%E6%89%BF"><span class="nav-text">Java 8支持多继承</span></a></li></ol></div>
             
 
           </div>

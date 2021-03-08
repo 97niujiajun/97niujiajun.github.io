@@ -80,17 +80,33 @@
 
 
 
-<meta name="description" content="JAVA,技术，后端">
+<meta name="description" content="1.第一个Maven项目（手动）  Maven工程目录结构 照着目录结构创建文件夹。 代码: 在main文件夹的java中写 Demo.java 123456public class Demo&amp;#123;	public String say(String name)&amp;#123;		System.out.print(&quot;hello&quot;+name);        return&amp;quo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Maven详解(二)::第一个程序">
+<meta property="og:title" content="Maven详解(二):第一个程序">
 <meta property="og:url" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/index.html">
 <meta property="og:site_name" content="Niu_Blog">
-<meta property="og:description" content="JAVA,技术，后端">
+<meta property="og:description" content="1.第一个Maven项目（手动）  Maven工程目录结构 照着目录结构创建文件夹。 代码: 在main文件夹的java中写 Demo.java 123456public class Demo&amp;#123;	public String say(String name)&amp;#123;		System.out.print(&quot;hello&quot;+name);        return&amp;quo">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210304225508625.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210304233138230.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210304233400465.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305200150521.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305204500805.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305205038282.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305214941596.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305230234570.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305224229211.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305230634304.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305232113609.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/niu_Blog/Hexo/source/_posts/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210308083553985.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305233124306.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210308084445949.png">
+<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210308084532865.png">
 <meta property="article:published_time" content="2021-03-04T13:41:24.000Z">
-<meta property="article:modified_time" content="2021-03-04T13:41:24.928Z">
+<meta property="article:modified_time" content="2021-03-08T00:45:49.558Z">
 <meta property="article:author" content="NiuJiaJun">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210304225508625.png">
 
 
 
@@ -126,7 +142,7 @@
 
 
 
-  <title>Maven详解(二)::第一个程序 | Niu_Blog</title>
+  <title>Maven详解(二):第一个程序 | Niu_Blog</title>
   
 
 
@@ -280,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Maven详解(二)::第一个程序</h1>
+          <h1 class="post-title" itemprop="name headline">Maven详解(二):第一个程序</h1>
         
 
         <div class="post-meta">
@@ -302,6 +318,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Maven/" itemprop="url" rel="index">
+                    <span itemprop="name">Maven</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -330,7 +368,78 @@
       
 
       
-        
+        <h2 id="1-第一个Maven项目（手动）"><a href="#1-第一个Maven项目（手动）" class="headerlink" title="1.第一个Maven项目（手动）"></a>1.第一个Maven项目（手动）</h2><br>
+
+<h3 id="Maven工程目录结构"><a href="#Maven工程目录结构" class="headerlink" title="Maven工程目录结构"></a>Maven工程目录结构</h3><p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210304225508625.png" alt="image-20210304225508625"></p>
+<p>照着目录结构创建文件夹。</p>
+<p>代码:</p>
+<p>在main文件夹的java中写</p>
+<p>Demo.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">		System.out.print(<span class="string">&quot;hello&quot;</span>+name);</span><br><span class="line">        <span class="keyword">return</span><span class="string">&quot;hello&quot;</span> + name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在test文件夹的java中写</p>
+<p>DemoTest.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;<span class="comment">//导入注解用</span></span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoTest</span></span>&#123;</span><br><span class="line"><span class="comment">//注解一定要加，maven靠这个识别呢</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSay</span><span class="params">()</span></span>&#123;</span><br><span class="line">		Demo d = <span class="keyword">new</span> Demo();</span><br><span class="line">		String ret = d.say(<span class="string">&quot;maven&quot;</span>);</span><br><span class="line">		<span class="comment">//断言Assert.assertEquals(预计值，真实值)，，这是个静态static方法</span></span><br><span class="line">		Assert.assertEquals(<span class="string">&quot;hello maven&quot;</span>,ret);<span class="comment">//ret为return的语句</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只写了这两个，是无法成为maven工程的。</p>
+<p>必须要有pom.xml文件</p>
+<p>在src的同层目录下，在maven安装包里，随便找个pom.xml，复制过去</p>
+<p>当然自己创建更好</p>
+<p>pom.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span> <span class="comment">&lt;!-- 模型版本 --&gt;</span></span><br><span class="line">    </span><br><span class="line">	<span class="comment">&lt;!-- pom.xml的版本是4.0.0了 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成，</span></span><br><span class="line"><span class="comment"> 如 com.companyname.project-group，</span></span><br><span class="line"><span class="comment">maven 会将该项目打成的 jar 包放本地路径： /com/companyname/project-group --&gt;</span>        </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.cskaoyan.project<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span> <span class="comment">&lt;!-- 项目的唯一 ID，一个 groupId 下面可能多个项目，就是靠 artifactId 来 区分的 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> <span class="comment">&lt;!--项目名称--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span><span class="comment">&lt;!-- 版本号 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span><span class="comment">&lt;!--这项目做完干嘛用，做完就是个jar包--&gt;</span></span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 项目运行所需要依赖的资源 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中<img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210304233138230.png" alt="image-20210304233138230"></p>
+<p>这个表明，这个项目做完。也成个资源了，别人通过此坐标可以导入此资源。</p>
+<p>到这里，maven目录结构搭建好了。</p>
+<h3 id="Maven项目构建命令"><a href="#Maven项目构建命令" class="headerlink" title="Maven项目构建命令"></a>Maven项目构建命令</h3><p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210304233400465.png" alt="image-20210304233400465"></p>
+<p>在src所在的层级下，在命令行执行命令。</p>
+<p>在新项目中，本地仓库还是空文件夹。</p>
+<p>首先输入</p>
+<h6 id="mvn-compile"><a href="#mvn-compile" class="headerlink" title="mvn compile"></a><code>mvn compile</code></h6><p>会开始下载插件。<strong>这时本地仓库就有东西了，同时在src同级目录下，多出个target文件夹，里面有classes，和maven-ststus两个文件夹，是程序编译完的东西。</strong></p>
+<p>从控制器可以看出，是从阿里云这个私服镜像下载的。</p>
+<p>先下插件再编译。</p>
+<p>第一次编译会慢，因为要下插件，等以后编译，就很快。</p>
+<h6 id="mvn-clean"><a href="#mvn-clean" class="headerlink" title="mvn clean"></a><code>mvn clean</code></h6><p>删除target文件夹。</p>
+<h6 id="mvn-test"><a href="#mvn-test" class="headerlink" title="mvn test"></a><code>mvn test</code></h6><p>会比编译多出两个文件夹：surefire-reports和test-classes文件夹。</p>
+<p>并且会在命令行有所显示</p>
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305200150521.png" alt="image-20210305200150521"></p>
+<h6 id="mvn-package"><a href="#mvn-package" class="headerlink" title="mvn package"></a><code>mvn package</code></h6><p>打包，会在target里面出现一个jar包。</p>
+<p>打包时，会自动执行编译、测试，然后才打包。</p>
+<h6 id="mvn-install"><a href="#mvn-install" class="headerlink" title="mvn install"></a><code>mvn install</code></h6><p>把打包的东西放到本地仓库中去。</p>
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305204500805.png" alt="image-20210305204500805"></p>
+<p>gruopId是com.ithema</p>
+<p>项目名称是project-java</p>
+<p>版本号1.0</p>
+<h3 id="用插件创建工程"><a href="#用插件创建工程" class="headerlink" title="用插件创建工程"></a>用插件创建工程</h3><p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305205038282.png" alt="image-20210305205038282"></p>
+<p>在空文件夹，命令行内，输入创建java工程中的代码，回车，自动下载插件并创建。</p>
+<p>会生成pom.xml和src文件夹，其中scr就有目录了。</p>
+<p>pom.xml也配置好了，包括junit。</p>
+<br>
+
+<p>创建web工程，同样的步骤，只不过文件夹内的内容不一样罢了，差不多是web的目录结构。</p>
+<p>web和java的比较</p>
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305214941596.png" alt="image-20210305214941596"></p>
+<br>
+
+<h2 id="2-第一个Maven项目（IDEA生成）"><a href="#2-第一个Maven项目（IDEA生成）" class="headerlink" title="2.第一个Maven项目（IDEA生成）"></a>2.第一个Maven项目（IDEA生成）</h2><h3 id="两种方法配置"><a href="#两种方法配置" class="headerlink" title="两种方法配置"></a>两种方法配置</h3><p>一种是创建空项目，然后在设置里进行添加</p>
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305230234570.png" alt="image-20210305230234570"></p>
+<br> 
+
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305224229211.png" alt="image-20210305224229211"></p>
+<p>也可以另一种方法</p>
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305230634304.png" alt="image-20210305230634304"></p>
+<h3 id="如何运行web项目"><a href="#如何运行web项目" class="headerlink" title="如何运行web项目"></a>如何运行web项目</h3><p>按上述方法创建好后，要进入pom.xml配置文件，配置一个tomcat插件</p>
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305232113609.png" alt="image-20210305232113609"></p>
+<p><strong>注意：build也是自己加上去的</strong></p>
+<p>添加好以后，在右边maven栏就可以看到啦</p>
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/niu_Blog/Hexo/source/_posts/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210308083553985.png" alt="image-20210308083553985"></p>
+<p>在点击那个<strong>小箭头</strong>，就有run了</p>
+<p>进一步设置端口和虚拟路径</p>
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210305233124306.png" alt="image-20210305233124306"></p>
+<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210308084445949.png" alt="image-20210308084445949"></p>
+<p>可快速执行命令</p>
+<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210308084532865.png" alt="image-20210308084532865"></p>
+
       
     </div>
     
@@ -363,6 +472,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/03/08/%E4%B8%BA%E4%BB%80%E4%B9%88java%E4%B8%8D%E6%94%AF%E6%8C%81%E5%A4%9A%E7%BB%A7%E6%89%BF/" rel="prev" title="为什么java不支持多继承?">
+                为什么java不支持多继承? <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -414,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -430,7 +552,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -503,6 +625,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%AC%AC%E4%B8%80%E4%B8%AAMaven%E9%A1%B9%E7%9B%AE%EF%BC%88%E6%89%8B%E5%8A%A8%EF%BC%89"><span class="nav-text">1.第一个Maven项目（手动）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">Maven工程目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4"><span class="nav-text">Maven项目构建命令</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mvn-compile"><span class="nav-text">mvn compile</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#mvn-clean"><span class="nav-text">mvn clean</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#mvn-test"><span class="nav-text">mvn test</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#mvn-package"><span class="nav-text">mvn package</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#mvn-install"><span class="nav-text">mvn install</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%8F%92%E4%BB%B6%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="nav-text">用插件创建工程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%AC%AC%E4%B8%80%E4%B8%AAMaven%E9%A1%B9%E7%9B%AE%EF%BC%88IDEA%E7%94%9F%E6%88%90%EF%BC%89"><span class="nav-text">2.第一个Maven项目（IDEA生成）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E9%85%8D%E7%BD%AE"><span class="nav-text">两种方法配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8Cweb%E9%A1%B9%E7%9B%AE"><span class="nav-text">如何运行web项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-text">小技巧</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
