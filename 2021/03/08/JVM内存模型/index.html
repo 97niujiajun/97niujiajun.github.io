@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="code-pyQ6nr8ZTJ" />
+<meta name="google-site-verification" content="vReF4EJ08bAOKpkJCToMy6UWWTEoY_zSf-FWFBKy4hU" />
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java, 开发" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.JVM内存模型 ​                                                    JDK1.6版本的结构图 其中，程序计数器、虚拟机栈和本地方法栈这三个区域属于线程私有的，只存在于线程的生命周期内，线程结束之后就会消失。 细化后：  方法区：123456789101112131415161718192021222324252627282930313233">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM内存模型">
+<meta property="og:url" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Niu_Blog">
+<meta property="og:description" content="1.JVM内存模型 ​                                                    JDK1.6版本的结构图 其中，程序计数器、虚拟机栈和本地方法栈这三个区域属于线程私有的，只存在于线程的生命周期内，线程结束之后就会消失。 细化后：  方法区：123456789101112131415161718192021222324252627282930313233">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png">
+<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204150823857.png">
+<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204155314670.png">
+<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426175411428-34722603.png">
+<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426154633834-741444326.jpg">
+<meta property="article:published_time" content="2021-03-08T02:31:33.000Z">
+<meta property="article:modified_time" content="2021-03-08T02:33:24.432Z">
+<meta property="article:author" content="NiuJiaJun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/03/08/JVM内存模型/"/>
+
+
+
+
+
+  <title>JVM内存模型 | Niu_Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Niu_Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Niu_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JVM内存模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-08T10:31:33+08:00">
+                2021-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVASE/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVASE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVASE/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-JVM内存模型"><a href="#1-JVM内存模型" class="headerlink" title="1.JVM内存模型"></a>1.JVM内存模型</h1><p><img src="/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png" alt="image-20210204113709298"></p>
+<p>​                                                    JDK1.6版本的结构图</p>
+<p>其中，程序计数器、虚拟机栈和本地方法栈这三个区域属于线程私有的，只存在于线程的生命周期内，线程结束之后就会消失。</p>
+<p>细化后：</p>
+<p><img src="/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204150823857.png" alt="image-20210204150823857"></p>
+<h4 id="方法区："><a href="#方法区：" class="headerlink" title="方法区："></a><strong>方法区：</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">讲之前所需的知识</span><br><span class="line"></span><br><span class="line">    <span class="number">1.</span>字面量： <span class="keyword">int</span> a=<span class="number">1</span>;String b=<span class="string">&quot;hi&quot;</span> <span class="comment">//这个”1“,&quot;hi&quot;就是字面量</span></span><br><span class="line">        </span><br><span class="line">	<span class="number">2.</span>符号引用：由于在编译过程中并不知道每个类的地址，因为可能这个类还没有加载，</span><br><span class="line">        		所以如果你在一个类中引用了另一个类，那么你完全无法知道他的内存地址，</span><br><span class="line">        		那怎么办，我们只能用他的类名作为符号引用，在类加载完后用这个符号引用去获取他的内存地址。</span><br><span class="line">                    （例子：我在com.demo.Solution类中引用了com.test.Quest，</span><br><span class="line">                    那么我会把com.test.Quest作为符号引用存到类常量池，</span><br><span class="line">                    等类加载完后，拿着这个引用去方法区找这个类的内存地址。）</span><br><span class="line"></span><br><span class="line">成员变量、局部变量、类变量分别存储在内存的什么地方？       </span><br><span class="line">    <span class="number">3.</span>类变量：- 类变量是用<span class="keyword">static</span>修饰符修饰，定义在方法外的变量，随着java进程产生和销毁</span><br><span class="line">			 - 在java8之前把静态变量存放于方法区，在java8时存放在堆中</span><br><span class="line">        </span><br><span class="line">    <span class="number">4.</span>成员变量：- 成员变量是定义在类中，但是没有<span class="keyword">static</span>修饰符修饰的变量，随着类的实例产生和销毁，</span><br><span class="line">        			是类实例的一部分</span><br><span class="line">			   - 由于是实例的一部分，在类初始化的时候，从运行时常量池取出直接引用或者值，</span><br><span class="line">        		 	与初始化的对象一起放入堆中</span><br><span class="line">        </span><br><span class="line">	<span class="number">5.</span>局部变量：- 局部变量是定义在类的方法中的变量</span><br><span class="line">			   - 在所在方法被调用时放入虚拟机栈的栈帧中，方法执行结束后从虚拟机栈中弹出，</span><br><span class="line">        			所以存放在虚拟机栈中</span><br><span class="line">     注意:<span class="keyword">final</span> 并不影响内存的位置</span><br><span class="line">         </span><br><span class="line">    <span class="number">6.</span>类元信息（Klass）</span><br><span class="line">			- 类元信息在类编译期间放入方法区，里面放置了类的基本信息，</span><br><span class="line">         		包括类的`版本`、`字段`、`方法`、`接口`以及`类常量池表（Constant Pool Table）`</span><br><span class="line">         </span><br><span class="line">			- 类常量池表（Constant Pool Table）存储了类在编译期间生成的`字面量`、`符号引用`，</span><br><span class="line">         		这些信息在类加载完后会被解析到运行时常量池中</span><br><span class="line">         </span><br><span class="line">    <span class="number">7.</span>运行时常量池（Runtime Constant Pool）</span><br><span class="line">         	- 运行时常量池主要存放在类加载后被解析的字面量与符号引用，但不止这些</span><br><span class="line">         	- 运行时常量池具备动态性，可以添加数据，比较多的使用就是String类的intern()方法</span><br><span class="line"></span><br><span class="line">     </span><br><span class="line">类常量池、运行时常量池、字符串常量池有什么关系？有什么区别？</span><br><span class="line">    <span class="number">8.</span>- 类常量池存储在方法区</span><br><span class="line">      - 运行时常量池存储在方法区</span><br><span class="line">      - 字符串常量池在jdk7时就已经从方法区迁移到了java堆中。</span><br><span class="line">         </span><br><span class="line">         在类编译过程中，会把类元信息放到方法区，类元信息的其中一部分便是类常量池，主要存放字面量和符号引用，</span><br><span class="line">        而字面量的一部分便是文本字符，在类加载时将字面量和符号引用解析为直接引用存储在运行时常量池；</span><br><span class="line">         </span><br><span class="line">         对于文本字符来说，它们会在解析时查找字符串常量池，查出这个文本字符对应的字符串对象的直接引用，将直接引用存储在运行时常量池；</span><br><span class="line">         </span><br><span class="line">         字符串常量池存储的是字符串对象的引用，而不是字符串本身。</span><br><span class="line">         </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204155314670.png" alt="image-20210204155314670"></p>
+<p>方法区是所有<code>线程共享</code>的内存，在java8以前是放在<strong>JVM内存中</strong>的，由<strong>永久代</strong>实现，受JVM内存大小参数的限制，在java8中移除了永久代的内容，方法区由<code>元空间(Meta Space)</code>实现，并直接放到了<strong>本地内存</strong>中，不受JVM参数的限制（当然，如果物理内存被占满了，方法区也会报OOM），并且将原来放在方法区的<code>字符串常量池</code>和<code>静态变量</code>都转移到了Java堆中。</p>
+<p>方法区与其他区域不同的地方在于，方法区在编译期间和类加载完成后的内容有少许不同，不过总的来说分为这两部分：</p>
+<ul>
+<li>类元信息（Klass）</li>
+<li>运行时常量池（Runtime Constant Pool）</li>
+</ul>
+<h1 id="2-两个概念"><a href="#2-两个概念" class="headerlink" title="2.两个概念"></a>2.两个概念</h1><h2 id="永久代PermGen"><a href="#永久代PermGen" class="headerlink" title="永久代PermGen"></a>永久代PermGen</h2><p><strong>JDK8以前，方法区由永久代实现，且存在JVM内存中，逻辑上属于堆的一部分！</strong></p>
+<p>只有HotSpot JVM有永久代，HotSpot JVM结构如下：</p>
+<p><img src="/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426175411428-34722603.png" alt="img"></p>
+<p>1.虚拟机栈和本地方法栈合一起了</p>
+<p>2.方法区和heap堆都是线程共享的内存区域</p>
+<h4 id="关于方法区和永久代"><a href="#关于方法区和永久代" class="headerlink" title="关于方法区和永久代"></a>关于方法区和永久代</h4><p>在HotSpot JVM中，这次讨论的<strong>永久代</strong>，就是上图的方法区（JVM规范中称为方法区）。《Java虚拟机规范》只是规定了有方法区这么个概念和它的作用，并没有规定如何去实现它。在其他JVM上不存在永久代。</p>
+<h4 id="JDK8永久代的废弃"><a href="#JDK8永久代的废弃" class="headerlink" title="JDK8永久代的废弃"></a>JDK8永久代的废弃</h4><p>JDK8 永久代变化如下图：</p>
+<p><img src="/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426154633834-741444326.jpg" alt="img"></p>
+<p>1.新生代：Eden+From SurMetaspacevivor+To Survivor</p>
+<p>2.老年代：OldGen</p>
+<p>3.永久代（方法区的实现） : PermGen—–&gt;替换为元空间Metaspace(本地内存中)</p>
+<p><strong>废弃原因：</strong></p>
+<p>1.移除永久代是为融合HotSpot JVM与 JRockit VM而做出的努力，因为JRockit没有永久代，不需要配置永久代。</p>
+<p>2.永久代内存经常不够用或发生内存泄露，爆出异常<em>java.lang.OutOfMemoryError: PermGen</em>。</p>
+<p><strong>变化</strong>：</p>
+<p>1.JDK8中类加载（方法区的功能）已经不在永久代PerGem中了，而是元空间Metaspace中。</p>
+<p>2.字符串常量由永久代转移到堆中。</p>
+<p>3.持久代已不存在，PermSize MaxPermSize参数已移除。</p>
+<h2 id="元空间Metaspace"><a href="#元空间Metaspace" class="headerlink" title="元空间Metaspace"></a>元空间Metaspace</h2><p><strong>JDK8以后，方法区由元空间实现，不存在于JVM内存中了，而是直接内存中。</strong></p>
+<p>（直接内存位于本地内存，不属于JVM内存，但是也会在物理内存耗尽的时候报OOM,所以也讲一下。</p>
+<p>​    在jdk1.4中加入了NIO（New Input/Output）类，引入了一种基于通道（channel）与缓冲区（buffer）的新IO方式，它可以使用native函数直接分配堆外内存，然后通过存储在java堆中的DirectByteBuffer对象作为这块内存的引用进行操作，这样可以在一些场景下<strong>大大提高IO性能，避免了在java堆和native堆来回复制数据</strong>。）</p>
+<p>​    元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制，但可以通过设置参数来指定元空间的大小。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/08/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="next" title="JVM垃圾回收">
+                <i class="fa fa-chevron-left"></i> JVM垃圾回收
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/97niujiajun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/niujiajun" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-github"></i>Gitee</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:niujiajun97@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:623590794@qq.com" target="_blank" title="Q-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>Q-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-text">1.JVM内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%9A"><span class="nav-text">方法区：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5"><span class="nav-text">2.两个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E4%BB%A3PermGen"><span class="nav-text">永久代PermGen</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%96%B9%E6%B3%95%E5%8C%BA%E5%92%8C%E6%B0%B8%E4%B9%85%E4%BB%A3"><span class="nav-text">关于方法区和永久代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK8%E6%B0%B8%E4%B9%85%E4%BB%A3%E7%9A%84%E5%BA%9F%E5%BC%83"><span class="nav-text">JDK8永久代的废弃</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4Metaspace"><span class="nav-text">元空间Metaspace</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NiuJiaJun</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+-->
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
