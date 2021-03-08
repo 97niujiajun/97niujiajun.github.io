@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210308084445949.png">
 <meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210308084532865.png">
 <meta property="article:published_time" content="2021-03-04T13:41:24.000Z">
-<meta property="article:modified_time" content="2021-03-08T01:09:06.045Z">
+<meta property="article:modified_time" content="2021-03-08T09:34:31.330Z">
 <meta property="article:author" content="NiuJiaJun">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/image-20210304225508625.png">
@@ -377,6 +377,10 @@
 
 <p>在test文件夹的java中写</p>
 <p>DemoTest.java</p>
+<p>注解有几个限制：</p>
+<p>修饰的方法必须是public</p>
+<p>修饰的方法无参</p>
+<p>修饰的方法无返回值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;<span class="comment">//导入注解用</span></span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoTest</span></span>&#123;</span><br><span class="line"><span class="comment">//注解一定要加，maven靠这个识别呢</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSay</span><span class="params">()</span></span>&#123;</span><br><span class="line">		Demo d = <span class="keyword">new</span> Demo();</span><br><span class="line">		String ret = d.say(<span class="string">&quot;maven&quot;</span>);</span><br><span class="line">		<span class="comment">//断言Assert.assertEquals(预计值，真实值)，，这是个静态static方法</span></span><br><span class="line">		Assert.assertEquals(<span class="string">&quot;hello maven&quot;</span>,ret);<span class="comment">//ret为return的语句</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>只写了这两个，是无法成为maven工程的。</p>
@@ -547,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

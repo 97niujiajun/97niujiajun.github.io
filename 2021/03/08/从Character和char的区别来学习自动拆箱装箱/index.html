@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="Java, 开发" />
+  <meta name="keywords" content="思考," />
 
 
 
@@ -80,23 +80,18 @@
 
 
 
-<meta name="description" content="1.Maven是什么Maven本质上是一个项目管理工具，将项目开发和管理过程抽象成一个项目对象模型（pom）。 Maven把项目当作一个对象来管理 可以对Java项目进行构建、依赖管理。  中间是maven 的核心，maven只包含了这些。其中插件部分是maven已经完成的。 其他的部分是与项目有关的，但是不属于maven。 依赖管理简单来说就是帮我们管jar包，避免版本冲突之类的。 一个项目即一">
+<meta name="description" content="本文结构1.Character和char 的区别：2.自动拆箱装箱 1.Character和char 的区别：Character是类，char基本数据类型. 在java中有三个类负责对字符的操作：Character、String、StringBuffer。其中Character类是对单个字符进行操作，String是对一个字符序列的操作，StringBuffer是对一串字符进行操作。 char可以自">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Maven详解(一):基础概念">
-<meta property="og:url" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:title" content="从Character和char的区别来学习自动拆箱装箱">
+<meta property="og:url" content="http://example.com/2021/03/08/%E4%BB%8ECharacter%E5%92%8Cchar%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9D%A5%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E8%A3%85%E7%AE%B1/index.html">
 <meta property="og:site_name" content="Niu_Blog">
-<meta property="og:description" content="1.Maven是什么Maven本质上是一个项目管理工具，将项目开发和管理过程抽象成一个项目对象模型（pom）。 Maven把项目当作一个对象来管理 可以对Java项目进行构建、依赖管理。  中间是maven 的核心，maven只包含了这些。其中插件部分是maven已经完成的。 其他的部分是与项目有关的，但是不属于maven。 依赖管理简单来说就是帮我们管jar包，避免版本冲突之类的。 一个项目即一">
+<meta property="og:description" content="本文结构1.Character和char 的区别：2.自动拆箱装箱 1.Character和char 的区别：Character是类，char基本数据类型. 在java中有三个类负责对字符的操作：Character、String、StringBuffer。其中Character类是对单个字符进行操作，String是对一个字符序列的操作，StringBuffer是对一串字符进行操作。 char可以自">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304202520118.png">
-<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304203444415.png">
-<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304211453618.png">
-<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304211618334.png">
-<meta property="og:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304212239548.png">
-<meta property="article:published_time" content="2021-03-04T13:40:39.000Z">
-<meta property="article:modified_time" content="2021-03-04T13:46:44.337Z">
+<meta property="article:published_time" content="2021-03-08T11:40:55.000Z">
+<meta property="article:modified_time" content="2021-03-08T11:41:57.068Z">
 <meta property="article:author" content="NiuJiaJun">
+<meta property="article:tag" content="思考">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304202520118.png">
 
 
 
@@ -126,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/03/04/Maven详解-一-基础概念/"/>
+  <link rel="canonical" href="http://example.com/2021/03/08/从Character和char的区别来学习自动拆箱装箱/"/>
 
 
 
 
 
-  <title>Maven详解(一):基础概念 | Niu_Blog</title>
+  <title>从Character和char的区别来学习自动拆箱装箱 | Niu_Blog</title>
   
 
 
@@ -269,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/%E4%BB%8ECharacter%E5%92%8Cchar%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9D%A5%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E8%A3%85%E7%AE%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -286,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Maven详解(一):基础概念</h1>
+          <h1 class="post-title" itemprop="name headline">从Character和char的区别来学习自动拆箱装箱</h1>
         
 
         <div class="post-meta">
@@ -298,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-04T21:40:39+08:00">
-                2021-03-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-08T19:40:55+08:00">
+                2021-03-08
               </time>
             
 
@@ -321,8 +316,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Maven/" itemprop="url" rel="index">
-                    <span itemprop="name">Maven</span>
+                  <a href="/categories/JAVASE/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVASE</span>
                   </a>
                 </span>
 
@@ -358,60 +353,20 @@
       
 
       
-        <h2 id="1-Maven是什么"><a href="#1-Maven是什么" class="headerlink" title="1.Maven是什么"></a>1.Maven是什么</h2><p>Maven本质上是一个项目管理工具，将项目开发和管理过程抽象成一个项目对象模型（<strong>pom</strong>）。</p>
-<p>Maven把项目当作一个<strong>对象</strong>来管理</p>
-<p>可以对Java项目进行构建、依赖管理。</p>
-<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304202520118.png" alt="image-20210304202520118"></p>
-<p>中间是maven 的核心，maven只包含了这些。其中插件部分是maven已经完成的。</p>
-<p>其他的部分是与项目有关的，但是不属于maven。</p>
-<h3 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h3><p>简单来说就是帮我们管jar包，避免版本冲突之类的。</p>
-<p><strong>一个项目</strong>即<strong>一个pom.xml</strong>进行配置，通过这个配置文件来了解项目信息。</p>
-<p><strong>项目对象</strong>里面用什么，靠<strong>依赖管理</strong>。这是<strong>双向</strong>的，意味着，自己的项目做完，也可以变成资源让别人用。</p>
-<p>依赖保存在<strong>本地仓库</strong>。</p>
-<p>大家用相同的依赖，就搭建一个<strong>私服</strong>，共享。</p>
-<p>而这所有的依赖，都是从<strong>中央仓库</strong>来。</p>
-<h3 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h3><p>简单来说就是提供标准的、跨平台的自动化项目构建方式。</p>
-<p>maven通过插件来进行构建过程。</p>
-<p>插件和构建，可以是一对多，多对多，多对一</p>
-<br>
-
-<h2 id="2-Maven-的作用"><a href="#2-Maven-的作用" class="headerlink" title="2.Maven 的作用"></a>2.Maven 的作用</h2><ul>
-<li>项目构建</li>
-<li>依赖管理</li>
-<li>统一开发结构：提供标准的、统一的项目结构，大家都来用了。</li>
-</ul>
-<br>
-
-<h2 id="3-Maven目录介绍"><a href="#3-Maven目录介绍" class="headerlink" title="3.Maven目录介绍"></a>3.Maven目录介绍</h2><p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304203444415.png" alt="image-20210304203444415"></p>
-<p>从bin目录下的mvn.cmd和mvn文件里的代码可以看出，maven运行，是要搜索JAVA_HOME的，因此要配好相关的路径。</p>
-<br>
-
-<h2 id="4-Mave基础概念"><a href="#4-Mave基础概念" class="headerlink" title="4.Mave基础概念"></a>4.Mave基础概念</h2><br>
-
-<h3 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h3><p>用于保存资源，包括各种jar包。</p>
-<p><strong>中央仓库</strong>是maven开发团队来维护的，<strong>本地仓库</strong>是自己电脑上的，算是子集。</p>
-<p>而<strong>私服</strong>就是，公司有个服务器，先从中央仓库下载下来资源，然后大家（本地仓库）从私服下载，速度快。</p>
-<p>私服还有一个作用，就是自己开发的，不想让大家用，就放私服自己用。</p>
-<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><ul>
-<li><p>什么是坐标</p>
-<p>​    Maven中的坐标用于描述仓库中资源的位置。Maven中有好多好多资源，怎么定位呢？</p>
-</li>
-<li><p>Maven坐标主要组成</p>
-<p>​    groupId：定义当前Maven项目隶属组织名称（通常是域名反写，例如com.niujiajun）</p>
-<p>​    artifactId：定义当前Maven项目名称（通常是模块名称，例如CRM、SMS）</p>
-<p>​    version：定义当前项目版本号</p>
-<p>​    scop：（可能会有）生命周期的部分，后面会讲到。</p>
-</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://mvnrepository.com/">https://mvnrepository.com/</a>  通过此网站来看坐标</p>
-<p>一般流程，要用哪个，就在这个网站找到坐标，复制粘贴到配置文件中，maven自动下载。</p>
-<h3 id="本地仓库配置"><a href="#本地仓库配置" class="headerlink" title="本地仓库配置"></a>本地仓库配置</h3><p>当在命令行输入mvn命令时，会默认创建。</p>
-<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304211453618.png" alt="image-20210304211453618"></p>
-<p>但是吧，c盘不太好，自己配置。</p>
-<p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304211618334.png" alt="image-20210304211618334"></p>
-<h3 id="国内镜像配置"><a href="#国内镜像配置" class="headerlink" title="国内镜像配置"></a>国内镜像配置</h3><p><img src="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%B8%80-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/image-20210304212239548.png" alt="image-20210304212239548"></p>
-<p>远程仓库在国外，设置国内的就好。</p>
-
+        <p>本文结构<br>1.Character和char 的区别：<br>2.自动拆箱装箱</p>
+<h2 id="1-Character和char-的区别："><a href="#1-Character和char-的区别：" class="headerlink" title="1.Character和char 的区别："></a>1.Character和char 的区别：</h2><p>Character是类，char基本数据类型.</p>
+<p>在java中有三个类负责对字符的操作：Character、String、StringBuffer。其中Character类是对单个字符进行操作，String是对一个字符序列的操作，StringBuffer是对一串字符进行操作。</p>
+<p>char可以自动包装成Character;Character也可以自动拆包成char。</p>
+<p>java中默认基本类型的数据是分配在栈上，如果你想把它包装成一个类的对象，让它分配在堆上，就需要用到包装类，Character就是char的包装类。</p>
+<p><strong>char可以自动包装成Character;Character也可以自动拆包成char.</strong></p>
+<h2 id="2-自动拆箱和装箱"><a href="#2-自动拆箱和装箱" class="headerlink" title="2.自动拆箱和装箱"></a>2.自动拆箱和装箱</h2><p>每一种基本数据类型，都对应了一个包装类：</p>
+<p>byte——Byte</p>
+<p>int——Integer</p>
+<p>char——Character</p>
+<p>。。。。。</p>
+<p>这些包装类final修饰不能被继承。</p>
+<p>每一个包装类对象，维护了一个对应的基本数据类型的值，且这个对象的值不会变，永远对应。1——Integer(1)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//装箱</span></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">Integer integer=<span class="keyword">new</span> Integer(a);</span><br><span class="line"><span class="comment">//将基本数据类型的值封装到其对应的包装类对象中，叫做装箱。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//拆箱</span></span><br><span class="line"><span class="keyword">int</span> i=integer.intValue();<span class="comment">//注意integer同上，都为定义的对象名</span></span><br><span class="line">Sout输出为<span class="number">1</span></span><br><span class="line"><span class="comment">//从包装类对象中，取出其所包装的基本数据类型的值，叫做拆箱。</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//自动装箱</span></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">Integer integer=a;<span class="comment">//居然把一个基本类型值赋值给了引用型变量，好矛盾，实际上jvm自动装箱了。</span></span><br><span class="line"><span class="comment">//Integer integer=new Integer(a);jvm自动补齐了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//自动拆箱</span></span><br><span class="line"><span class="keyword">int</span> b=integer;<span class="comment">//居然把地址赋值给了基本类型的变量里</span></span><br><span class="line"><span class="comment">//int b=integer.intValue();jvm自动补齐了</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Integer integer1=<span class="number">1</span>;</span><br><span class="line">Integer integer2=<span class="number">1</span>;</span><br><span class="line">SOUT（integer1==integer2）;<span class="comment">//输出的是true</span></span><br><span class="line"><span class="comment">//不对呀两个对象应该是两个地址呀，这是因为对于数据范围-128~127这个范围的包装类对象，做了缓存，</span></span><br><span class="line"><span class="comment">//所以俩是一个对象</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//注意：虽然有了自动装箱和自动拆箱，但不是在所有的场景下基本数据类型的值与包装类对象都等价</span></span><br><span class="line"><span class="comment">//第一个场景</span></span><br><span class="line"><span class="keyword">int</span>[] a=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>];</span><br><span class="line">Integer[] b=a;<span class="comment">//报错，不行,站在整个数组的角度来看是错误的</span></span><br><span class="line"></span><br><span class="line">a[<span class="number">0</span>]=<span class="keyword">new</span> Integer(<span class="number">100</span>);<span class="comment">//可以，站在单个数组单元来看是可以的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二个场景</span></span><br><span class="line"><span class="comment">//父类方法用int型</span></span><br><span class="line"><span class="comment">//子类方法用Integer报错</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -426,6 +381,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%80%9D%E8%80%83/" rel="tag"># 思考</a>
+          
+        </div>
+      
 
       
       
@@ -435,8 +396,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/02/25/%E9%9B%86%E5%90%88%E7%BB%83%E4%B9%A0/" rel="next" title="集合综合练习">
-                <i class="fa fa-chevron-left"></i> 集合综合练习
+              <a href="/2021/03/08/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%BB%A3%E7%A0%81%E9%A2%98/" rel="next" title="类加载和初始化顺序代码题">
+                <i class="fa fa-chevron-left"></i> 类加载和初始化顺序代码题
               </a>
             
           </div>
@@ -445,8 +406,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/03/04/Maven%E8%AF%A6%E8%A7%A3-%E4%BA%8C-%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/" rel="prev" title="Maven详解(二):第一个程序">
-                Maven详解(二):第一个程序 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/03/08/%E4%BB%8E%E6%95%B0%E7%BB%84%E6%9D%A5%E7%9C%8B%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/" rel="prev" title="从数组来看值传递和引用传递">
+                从数组来看值传递和引用传递 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -607,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Maven%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">1.Maven是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86"><span class="nav-text">依赖管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA"><span class="nav-text">项目构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Maven-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">2.Maven 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Maven%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D"><span class="nav-text">3.Maven目录介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Mave%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-text">4.Mave基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%93%E5%BA%93"><span class="nav-text">仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%90%E6%A0%87"><span class="nav-text">坐标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AE"><span class="nav-text">本地仓库配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E9%85%8D%E7%BD%AE"><span class="nav-text">国内镜像配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Character%E5%92%8Cchar-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-text">1.Character和char 的区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E5%92%8C%E8%A3%85%E7%AE%B1"><span class="nav-text">2.自动拆箱和装箱</span></a></li></ol></div>
             
 
           </div>
