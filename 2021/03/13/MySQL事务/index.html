@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="本文结构1.Character和char 的区别：2.自动拆箱装箱 1.Character和char 的区别：Character是类，char基本数据类型. 在java中有三个类负责对字符的操作：Character、String、StringBuffer。其中Character类是对单个字符进行操作，String是对一个字符序列的操作，StringBuffer是对一串字符进行操作。 char可以自">
+<meta name="description" content="事务介绍事务:一条或多条SQL语句组成一个执行单元，其特点是这个单元要么同时成功要么同时失败。 单元中的每条SQL语句都相互依赖，形成一个整体。 如果某条SQL语句执行失败或者出现错误，那么整个单元就会撤回到事务最初的状态。 如果单元中所有的SQL语句都执行成功，则整个单元成功。 事务的操作开启事务START    TRANSACTION 回滚事务ROLLBACK 提交事务COMMIT 事务的提交">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从Character和char的区别来学习自动拆箱装箱">
-<meta property="og:url" content="http://example.com/2021/03/08/%E4%BB%8ECharacter%E5%92%8Cchar%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9D%A5%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E8%A3%85%E7%AE%B1/index.html">
+<meta property="og:title" content="MySQL事务">
+<meta property="og:url" content="http://example.com/2021/03/13/MySQL%E4%BA%8B%E5%8A%A1/index.html">
 <meta property="og:site_name" content="Niu_Blog">
-<meta property="og:description" content="本文结构1.Character和char 的区别：2.自动拆箱装箱 1.Character和char 的区别：Character是类，char基本数据类型. 在java中有三个类负责对字符的操作：Character、String、StringBuffer。其中Character类是对单个字符进行操作，String是对一个字符序列的操作，StringBuffer是对一串字符进行操作。 char可以自">
+<meta property="og:description" content="事务介绍事务:一条或多条SQL语句组成一个执行单元，其特点是这个单元要么同时成功要么同时失败。 单元中的每条SQL语句都相互依赖，形成一个整体。 如果某条SQL语句执行失败或者出现错误，那么整个单元就会撤回到事务最初的状态。 如果单元中所有的SQL语句都执行成功，则整个单元成功。 事务的操作开启事务START    TRANSACTION 回滚事务ROLLBACK 提交事务COMMIT 事务的提交">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-03-08T11:40:55.000Z">
-<meta property="article:modified_time" content="2021-03-10T13:33:22.271Z">
+<meta property="og:image" content="http://example.com/2021/03/13/MySQL%E4%BA%8B%E5%8A%A1/image-20210310163731616.png">
+<meta property="article:published_time" content="2021-03-13T02:37:34.000Z">
+<meta property="article:modified_time" content="2021-03-13T02:39:41.919Z">
 <meta property="article:author" content="NiuJiaJun">
 <meta property="article:tag" content="思考">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/03/13/MySQL%E4%BA%8B%E5%8A%A1/image-20210310163731616.png">
 
 
 
@@ -135,13 +137,13 @@
 </script>
 
 
-  <link rel="canonical" href="http://example.com/2021/03/08/从Character和char的区别来学习自动拆箱装箱/"/>
+  <link rel="canonical" href="http://example.com/2021/03/13/MySQL事务/"/>
 
 
 
 
 
-  <title>从Character和char的区别来学习自动拆箱装箱 | Niu_Blog</title>
+  <title>MySQL事务 | Niu_Blog</title>
   
 
 
@@ -278,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/%E4%BB%8ECharacter%E5%92%8Cchar%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9D%A5%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E8%A3%85%E7%AE%B1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/13/MySQL%E4%BA%8B%E5%8A%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -295,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从Character和char的区别来学习自动拆箱装箱</h1>
+          <h1 class="post-title" itemprop="name headline">MySQL事务</h1>
         
 
         <div class="post-meta">
@@ -307,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-08T19:40:55+08:00">
-                2021-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-13T10:37:34+08:00">
+                2021-03-13
               </time>
             
 
@@ -330,8 +332,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVASE/" itemprop="url" rel="index">
-                    <span itemprop="name">JAVASE</span>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
                   </a>
                 </span>
 
@@ -367,25 +380,49 @@
       
 
       
-        <p>本文结构<br>1.Character和char 的区别：<br>2.自动拆箱装箱</p>
-<h1 id="1-Character和char-的区别："><a href="#1-Character和char-的区别：" class="headerlink" title="1.Character和char 的区别："></a>1.Character和char 的区别：</h1><p>Character是类，char基本数据类型.</p>
-<p>在java中有三个类负责对字符的操作：Character、String、StringBuffer。其中Character类是对单个字符进行操作，String是对一个字符序列的操作，StringBuffer是对一串字符进行操作。</p>
-<p>char可以自动包装成Character;Character也可以自动拆包成char。</p>
-<p>java中默认基本类型的数据是分配在栈上，如果你想把它包装成一个类的对象，让它分配在堆上，就需要用到包装类，Character就是char的包装类。</p>
-<p>也就是说：基本类型是直接将变量值存储在栈中，而包装类型是将对象放在堆中，然后通过引用来使用。</p>
-<p><strong>char可以自动包装成Character;Character也可以自动拆包成char.</strong></p>
-<h1 id="2-自动拆箱和装箱"><a href="#2-自动拆箱和装箱" class="headerlink" title="2.自动拆箱和装箱"></a>2.自动拆箱和装箱</h1><p>每一种基本数据类型，都对应了一个包装类：</p>
-<p>byte——Byte</p>
-<p>int——Integer</p>
-<p>char——Character</p>
-<p>。。。。。</p>
-<p>这些包装类final修饰不能被继承。</p>
-<p>每一个包装类对象，维护了一个对应的基本数据类型的值，且这个对象的值不会变，永远对应。1——Integer(1)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//装箱</span></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">Integer integer=<span class="keyword">new</span> Integer(a);</span><br><span class="line"><span class="comment">//将基本数据类型的值封装到其对应的包装类对象中，叫做装箱。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//拆箱</span></span><br><span class="line"><span class="keyword">int</span> i=integer.intValue();<span class="comment">//注意integer同上，都为定义的对象名</span></span><br><span class="line">Sout输出为<span class="number">1</span></span><br><span class="line"><span class="comment">//从包装类对象中，取出其所包装的基本数据类型的值，叫做拆箱。</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//自动装箱</span></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">Integer integer=a;<span class="comment">//居然把一个基本类型值赋值给了引用型变量，好矛盾，实际上jvm自动装箱了。</span></span><br><span class="line"><span class="comment">//Integer integer=new Integer(a);jvm自动补齐了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//自动拆箱</span></span><br><span class="line"><span class="keyword">int</span> b=integer;<span class="comment">//居然把地址赋值给了基本类型的变量里</span></span><br><span class="line"><span class="comment">//int b=integer.intValue();jvm自动补齐了</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Integer integer1=<span class="number">1</span>;</span><br><span class="line">Integer integer2=<span class="number">1</span>;</span><br><span class="line">SOUT（integer1==integer2）;<span class="comment">//输出的是true</span></span><br><span class="line"><span class="comment">//不对呀两个对象应该是两个地址呀，这是因为对于数据范围-128~127这个范围的包装类对象，做了缓存，</span></span><br><span class="line"><span class="comment">//所以俩是一个对象</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//注意：虽然有了自动装箱和自动拆箱，但不是在所有的场景下基本数据类型的值与包装类对象都等价</span></span><br><span class="line"><span class="comment">//第一个场景</span></span><br><span class="line"><span class="keyword">int</span>[] a=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>];</span><br><span class="line">Integer[] b=a;<span class="comment">//报错，不行,站在整个数组的角度来看是错误的</span></span><br><span class="line"></span><br><span class="line">a[<span class="number">0</span>]=<span class="keyword">new</span> Integer(<span class="number">100</span>);<span class="comment">//可以，站在单个数组单元来看是可以的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二个场景</span></span><br><span class="line"><span class="comment">//父类方法用int型</span></span><br><span class="line"><span class="comment">//子类方法用Integer报错</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="3-什么时候用包装类"><a href="#3-什么时候用包装类" class="headerlink" title="3.什么时候用包装类"></a>3.什么时候用包装类</h1><p>javabean实体类为什么都用包装类型？</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Student.java</span><br><span class="line"></span><br><span class="line"><span class="comment">//一定要用包装类来设置参数</span></span><br><span class="line"><span class="comment">//包装类型 Integer 和 基本类型 int 的最大区别就是包装类可以设置为 null。</span></span><br><span class="line"><span class="comment">//这样，缺考和考0分的就有区别了。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stu</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer stu_id;</span><br><span class="line">    <span class="keyword">private</span> Integer teacher_id;</span><br><span class="line">    <span class="keyword">private</span> String stu_name;</span><br><span class="line">    <span class="keyword">private</span> String time;</span><br><span class="line">    <span class="keyword">private</span> String sex ;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stu</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stu</span><span class="params">(Integer stu_id, Integer teacher_id, String stu_name, String time, String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.stu_id = stu_id;</span><br><span class="line">        <span class="keyword">this</span>.teacher_id = teacher_id;</span><br><span class="line">        <span class="keyword">this</span>.stu_name = stu_name;</span><br><span class="line">        <span class="keyword">this</span>.time = time;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="事务介绍"><a href="#事务介绍" class="headerlink" title="事务介绍"></a>事务介绍</h1><p>事务:一条或多条SQL语句组成一个执行单元，其特点是这个单元要么同时成功要么同时失败。</p>
+<p>单元中的每条SQL语句都相互依赖，形成一个整体。</p>
+<p>如果某条SQL语句执行失败或者出现错误，那么整个单元就会撤回到事务最初的状态。</p>
+<p>如果单元中所有的SQL语句都执行成功，则整个单元成功。</p>
+<h1 id="事务的操作"><a href="#事务的操作" class="headerlink" title="事务的操作"></a>事务的操作</h1><h2 id="开启事务"><a href="#开启事务" class="headerlink" title="开启事务"></a>开启事务</h2><p><code>START    TRANSACTION</code></p>
+<h2 id="回滚事务"><a href="#回滚事务" class="headerlink" title="回滚事务"></a>回滚事务</h2><p><code>ROLLBACK</code></p>
+<h2 id="提交事务"><a href="#提交事务" class="headerlink" title="提交事务"></a>提交事务</h2><p><code>COMMIT</code></p>
+<h1 id="事务的提交方式"><a href="#事务的提交方式" class="headerlink" title="事务的提交方式"></a>事务的提交方式</h1><p>事务的提交方式分两类:</p>
+<p>自动提交（MySQL默认），手动提交。</p>
+<p><code>SELECT @@AUTOCOMMIT;</code>查看事务提交方式。[1代表自动提交，0代表手动]</p>
+<p><code>SET @@AUTOCOMMIT=数字;</code>修改事务提交方式。</p>
+<p>手动提交：执行完操作以后，必须<strong>提交事务</strong>才可以真正的持久化数据。</p>
+<h1 id="事务的四大特征（ACID）"><a href="#事务的四大特征（ACID）" class="headerlink" title="事务的四大特征（ACID）"></a>事务的四大特征（ACID）</h1><h2 id="原子性-Atomicity"><a href="#原子性-Atomicity" class="headerlink" title="原子性(Atomicity)"></a>原子性(Atomicity)</h2><p>原子性是指事务包含的所有操作，要么全部成功，要么全部失败回滚。</p>
+<p>因此事务的操作如果成功就必须要完全应用到数据库，如果操作失败则不能对数据库有任何影响。</p>
+<h2 id="一致性-Consistency"><a href="#一致性-Consistency" class="headerlink" title="一致性(Consistency)"></a>一致性(Consistency)</h2><p>一致性是指事物必须使数据库从一个一致性状态变换到另一个一致性状态。</p>
+<p>也就是说一个事务执行之前和执行之后都必须处于一致性状态。</p>
+<h2 id="隔离性-isolation"><a href="#隔离性-isolation" class="headerlink" title="隔离性(isolation)"></a>隔离性(isolation)</h2><p>隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务。</p>
+<p>不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。</p>
+<h2 id="持久性-durability"><a href="#持久性-durability" class="headerlink" title="持久性(durability)"></a>持久性(durability)</h2><p>持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的。</p>
+<p>即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。</p>
+<h1 id="事务的隔离级别-隔离性"><a href="#事务的隔离级别-隔离性" class="headerlink" title="事务的隔离级别(隔离性)"></a>事务的隔离级别(隔离性)</h1><p>多个客户端操作时，各个客户端的事务之间应该是隔离的，相互独立的，不受影响的 。</p>
+<p>而如果多个事务操作同一批数据时，就会产生不同的问题，我们需要设置不同的隔离级别来解决这些问题。</p>
+<h2 id="隔离级别分类"><a href="#隔离级别分类" class="headerlink" title="隔离级别分类"></a>隔离级别分类</h2><p><span style="color:red">注意：MySQL默认是可重复读级别，Oracle默认是读已提交级别</span></p>
+<p><img src="/2021/03/13/MySQL%E4%BA%8B%E5%8A%A1/image-20210310163731616.png" alt="image-20210310163731616"></p>
+<p>随着安全级别的提高，效率也会越来越低。</p>
+<p><code>SELECT @@TX_ISOLATION;</code>查询数据库隔离级别。</p>
+<p><code>SET GLOBAL TRANSACTION    IOLATION LEVEL 级别字符串;</code>修改数据库隔离级别。</p>
+<p>修改后记着重新连接一下数据库。</p>
+<h2 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h2><p><strong>在一个事务处理过程中读取到了另一个未提交事务中订单数据，导致两次查询结果不一致。</strong></p>
+<p>具体体现：</p>
+<p>一个窗口更新数据，但还没有<span style="color:red">提交事务</span>，另一个窗口查询，查询到了更新的数据。</p>
+<p>即：一个事务还没处理完成，另个事务就介入了。</p>
+<h2 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h2><p><strong>在一个事务处理过程中，读取到了另一个事务中修改并已经提交的数据，导致两次查询结果不一致。</strong></p>
+<p>举个例子：</p>
+<p>两个窗口<span style="color:red">同时</span>开启事务，一个事务查询是A结果，另一个事务进行更改并提交(已解决脏读)；第一个事务再查，发现查询的结果变了。</p>
+<p>现实中的问题，小王早上查一个数，下午老板再查，数字不一样了，就不trust小王了。</p>
+<p>那正确的应该是：第一个事务提交了以后，再建一个事务查，才能查出来更改后的数据，这才是对的逻辑。</p>
+<h2 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h2><p><strong>查询某数据不存在，准备插入此记录，但执行插入时发现此记录已存在，无法插入。或查询数据不存在执行删除操作，却发现删除成功。</strong></p>
+<p>举个例子(隔离级别：repeatable read)：</p>
+<p>开启两个事务（窗口），A添加记录，B再添加，这时候图形界面一直转圈圈。等到A提交事务成功，B会结束转圈圈并报错，说已经有了。</p>
+<p>或者：A添加，B删除不存在的A刚刚添加的，竟发现，成功啦！</p>
+<p>解决方案：</p>
+<p>设置成SERIALIZABLE级别，这个级别，就是锁表操作了。</p>
 
       
     </div>
@@ -416,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/03/08/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%BB%A3%E7%A0%81%E9%A2%98/" rel="next" title="类加载和初始化顺序代码题">
-                <i class="fa fa-chevron-left"></i> 类加载和初始化顺序代码题
+              <a href="/2021/03/08/%E4%BB%8E%E6%95%B0%E7%BB%84%E6%9D%A5%E7%9C%8B%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/" rel="next" title="从数组来看值传递和引用传递">
+                <i class="fa fa-chevron-left"></i> 从数组来看值传递和引用传递
               </a>
             
           </div>
@@ -425,10 +462,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/03/08/%E4%BB%8E%E6%95%B0%E7%BB%84%E6%9D%A5%E7%9C%8B%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/" rel="prev" title="从数组来看值传递和引用传递">
-                从数组来看值传递和引用传递 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -588,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Character%E5%92%8Cchar-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-text">1.Character和char 的区别：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E5%92%8C%E8%A3%85%E7%AE%B1"><span class="nav-text">2.自动拆箱和装箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="nav-text">3.什么时候用包装类</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E4%BB%8B%E7%BB%8D"><span class="nav-text">事务介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-text">事务的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E4%BA%8B%E5%8A%A1"><span class="nav-text">开启事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E6%BB%9A%E4%BA%8B%E5%8A%A1"><span class="nav-text">回滚事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E4%BA%8B%E5%8A%A1"><span class="nav-text">提交事务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%8F%90%E4%BA%A4%E6%96%B9%E5%BC%8F"><span class="nav-text">事务的提交方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E5%BE%81%EF%BC%88ACID%EF%BC%89"><span class="nav-text">事务的四大特征（ACID）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7-Atomicity"><span class="nav-text">原子性(Atomicity)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-Consistency"><span class="nav-text">一致性(Consistency)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E6%80%A7-isolation"><span class="nav-text">隔离性(isolation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E6%80%A7-durability"><span class="nav-text">持久性(durability)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB-%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="nav-text">事务的隔离级别(隔离性)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB"><span class="nav-text">隔离级别分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%8F%E8%AF%BB"><span class="nav-text">脏读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB"><span class="nav-text">不可重复读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BB%E8%AF%BB"><span class="nav-text">幻读</span></a></li></ol></li></ol></div>
             
 
           </div>
