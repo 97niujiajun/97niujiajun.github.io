@@ -84,20 +84,20 @@
 <meta name="description" content="1.JVM内存模型 ​                                                    JDK1.6版本的结构图 其中，程序计数器、虚拟机栈和本地方法栈这三个区域属于线程私有的，只存在于线程的生命周期内，线程结束之后就会消失。 细化后：  方法区：123456789101112131415161718192021222324252627282930313233">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM内存模型">
-<meta property="og:url" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:url" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Niu_Blog">
 <meta property="og:description" content="1.JVM内存模型 ​                                                    JDK1.6版本的结构图 其中，程序计数器、虚拟机栈和本地方法栈这三个区域属于线程私有的，只存在于线程的生命周期内，线程结束之后就会消失。 细化后：  方法区：123456789101112131415161718192021222324252627282930313233">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png">
-<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204150823857.png">
-<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204155314670.png">
-<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426175411428-34722603.png">
-<meta property="og:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426154633834-741444326.jpg">
+<meta property="og:image" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png">
+<meta property="og:image" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204150823857.png">
+<meta property="og:image" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204155314670.png">
+<meta property="og:image" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426175411428-34722603.png">
+<meta property="og:image" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426154633834-741444326.jpg">
 <meta property="article:published_time" content="2021-03-08T03:44:25.000Z">
 <meta property="article:modified_time" content="2021-03-08T03:46:19.783Z">
 <meta property="article:author" content="NiuJiaJun">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png">
+<meta name="twitter:image" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png">
 
 
 
@@ -140,7 +140,7 @@
 </script>
 
 
-  <link rel="canonical" href="http://example.com/2021/03/08/JVM内存模型/"/>
+  <link rel="canonical" href="https://niujiajun.gitee.io/2021/03/08/JVM内存模型/"/>
 
 
 
@@ -181,7 +181,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">博客,程序</p>
       
   </div>
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -532,7 +532,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -543,7 +543,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -554,7 +554,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
