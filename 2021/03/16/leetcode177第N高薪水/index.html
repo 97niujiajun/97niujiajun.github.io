@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="思考," />
+  <meta name="keywords" content="Leetcode," />
 
 
 
@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="本文结构1.Character和char 的区别：2.自动拆箱装箱 1.Character和char 的区别：Character是类，char基本数据类型. 在java中有三个类负责对字符的操作：Character、String、StringBuffer。其中Character类是对单个字符进行操作，String是对一个字符序列的操作，StringBuffer是对一串字符进行操作。 char可以自">
+<meta name="description" content="编写一个 SQL 查询，获取 Employee 表中第 n 高的薪水（Salary）。 +----+--------+| Id | Salary |+----+--------+| 1  | 100    || 2  | 200    || 3  | 300    |+----+--------+  例如上述 Employee 表，n &#x3D; 2 时，应返回第二高的薪水 200。如果不存在第 n 高的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从Character和char的区别来学习自动拆箱装箱">
-<meta property="og:url" content="http://example.com/2021/03/08/%E4%BB%8ECharacter%E5%92%8Cchar%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9D%A5%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E8%A3%85%E7%AE%B1/index.html">
+<meta property="og:title" content="leetcode177第N高薪水">
+<meta property="og:url" content="http://example.com/2021/03/16/leetcode177%E7%AC%ACN%E9%AB%98%E8%96%AA%E6%B0%B4/index.html">
 <meta property="og:site_name" content="Niu_Blog">
-<meta property="og:description" content="本文结构1.Character和char 的区别：2.自动拆箱装箱 1.Character和char 的区别：Character是类，char基本数据类型. 在java中有三个类负责对字符的操作：Character、String、StringBuffer。其中Character类是对单个字符进行操作，String是对一个字符序列的操作，StringBuffer是对一串字符进行操作。 char可以自">
+<meta property="og:description" content="编写一个 SQL 查询，获取 Employee 表中第 n 高的薪水（Salary）。 +----+--------+| Id | Salary |+----+--------+| 1  | 100    || 2  | 200    || 3  | 300    |+----+--------+  例如上述 Employee 表，n &#x3D; 2 时，应返回第二高的薪水 200。如果不存在第 n 高的">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-03-08T11:40:55.000Z">
-<meta property="article:modified_time" content="2021-03-10T13:33:22.271Z">
+<meta property="article:published_time" content="2021-03-16T08:43:12.000Z">
+<meta property="article:modified_time" content="2021-03-16T08:44:53.074Z">
 <meta property="article:author" content="NiuJiaJun">
-<meta property="article:tag" content="思考">
+<meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
 
 
@@ -135,13 +135,13 @@
 </script>
 
 
-  <link rel="canonical" href="http://example.com/2021/03/08/从Character和char的区别来学习自动拆箱装箱/"/>
+  <link rel="canonical" href="http://example.com/2021/03/16/leetcode177第N高薪水/"/>
 
 
 
 
 
-  <title>从Character和char的区别来学习自动拆箱装箱 | Niu_Blog</title>
+  <title>leetcode177第N高薪水 | Niu_Blog</title>
   
 
 
@@ -278,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/%E4%BB%8ECharacter%E5%92%8Cchar%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9D%A5%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E8%A3%85%E7%AE%B1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/16/leetcode177%E7%AC%ACN%E9%AB%98%E8%96%AA%E6%B0%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -295,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从Character和char的区别来学习自动拆箱装箱</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode177第N高薪水</h1>
         
 
         <div class="post-meta">
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-08T19:40:55+08:00">
-                2021-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-16T16:43:12+08:00">
+                2021-03-16
               </time>
             
 
@@ -330,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVASE/" itemprop="url" rel="index">
-                    <span itemprop="name">JAVASE</span>
+                  <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" itemprop="url" rel="index">
+                    <span itemprop="name">每日一题</span>
                   </a>
                 </span>
 
@@ -367,24 +367,27 @@
       
 
       
-        <p>本文结构<br>1.Character和char 的区别：<br>2.自动拆箱装箱</p>
-<h1 id="1-Character和char-的区别："><a href="#1-Character和char-的区别：" class="headerlink" title="1.Character和char 的区别："></a>1.Character和char 的区别：</h1><p>Character是类，char基本数据类型.</p>
-<p>在java中有三个类负责对字符的操作：Character、String、StringBuffer。其中Character类是对单个字符进行操作，String是对一个字符序列的操作，StringBuffer是对一串字符进行操作。</p>
-<p>char可以自动包装成Character;Character也可以自动拆包成char。</p>
-<p>java中默认基本类型的数据是分配在栈上，如果你想把它包装成一个类的对象，让它分配在堆上，就需要用到包装类，Character就是char的包装类。</p>
-<p>也就是说：基本类型是直接将变量值存储在栈中，而包装类型是将对象放在堆中，然后通过引用来使用。</p>
-<p><strong>char可以自动包装成Character;Character也可以自动拆包成char.</strong></p>
-<h1 id="2-自动拆箱和装箱"><a href="#2-自动拆箱和装箱" class="headerlink" title="2.自动拆箱和装箱"></a>2.自动拆箱和装箱</h1><p>每一种基本数据类型，都对应了一个包装类：</p>
-<p>byte——Byte</p>
-<p>int——Integer</p>
-<p>char——Character</p>
-<p>。。。。。</p>
-<p>这些包装类final修饰不能被继承。</p>
-<p>每一个包装类对象，维护了一个对应的基本数据类型的值，且这个对象的值不会变，永远对应。1——Integer(1)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//装箱</span></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">Integer integer=<span class="keyword">new</span> Integer(a);</span><br><span class="line"><span class="comment">//将基本数据类型的值封装到其对应的包装类对象中，叫做装箱。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//拆箱</span></span><br><span class="line"><span class="keyword">int</span> i=integer.intValue();<span class="comment">//注意integer同上，都为定义的对象名</span></span><br><span class="line">Sout输出为<span class="number">1</span></span><br><span class="line"><span class="comment">//从包装类对象中，取出其所包装的基本数据类型的值，叫做拆箱。</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//自动装箱</span></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">Integer integer=a;<span class="comment">//居然把一个基本类型值赋值给了引用型变量，好矛盾，实际上jvm自动装箱了。</span></span><br><span class="line"><span class="comment">//Integer integer=new Integer(a);jvm自动补齐了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//自动拆箱</span></span><br><span class="line"><span class="keyword">int</span> b=integer;<span class="comment">//居然把地址赋值给了基本类型的变量里</span></span><br><span class="line"><span class="comment">//int b=integer.intValue();jvm自动补齐了</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Integer integer1=<span class="number">1</span>;</span><br><span class="line">Integer integer2=<span class="number">1</span>;</span><br><span class="line">SOUT（integer1==integer2）;<span class="comment">//输出的是true</span></span><br><span class="line"><span class="comment">//不对呀两个对象应该是两个地址呀，这是因为对于数据范围-128~127这个范围的包装类对象，做了缓存，</span></span><br><span class="line"><span class="comment">//所以俩是一个对象</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//注意：虽然有了自动装箱和自动拆箱，但不是在所有的场景下基本数据类型的值与包装类对象都等价</span></span><br><span class="line"><span class="comment">//第一个场景</span></span><br><span class="line"><span class="keyword">int</span>[] a=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>];</span><br><span class="line">Integer[] b=a;<span class="comment">//报错，不行,站在整个数组的角度来看是错误的</span></span><br><span class="line"></span><br><span class="line">a[<span class="number">0</span>]=<span class="keyword">new</span> Integer(<span class="number">100</span>);<span class="comment">//可以，站在单个数组单元来看是可以的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二个场景</span></span><br><span class="line"><span class="comment">//父类方法用int型</span></span><br><span class="line"><span class="comment">//子类方法用Integer报错</span></span><br></pre></td></tr></table></figure>
+        <p>编写一个 SQL 查询，获取 <code>Employee</code> 表中第 <em>n</em> 高的薪水（Salary）。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| Id | Salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">| 2  | 200    |</span><br><span class="line">| 3  | 300    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
 
-<h1 id="3-什么时候用包装类"><a href="#3-什么时候用包装类" class="headerlink" title="3.什么时候用包装类"></a>3.什么时候用包装类</h1><p>javabean实体类为什么都用包装类型？</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Student.java</span><br><span class="line"></span><br><span class="line"><span class="comment">//一定要用包装类来设置参数</span></span><br><span class="line"><span class="comment">//包装类型 Integer 和 基本类型 int 的最大区别就是包装类可以设置为 null。</span></span><br><span class="line"><span class="comment">//这样，缺考和考0分的就有区别了。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stu</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer stu_id;</span><br><span class="line">    <span class="keyword">private</span> Integer teacher_id;</span><br><span class="line">    <span class="keyword">private</span> String stu_name;</span><br><span class="line">    <span class="keyword">private</span> String time;</span><br><span class="line">    <span class="keyword">private</span> String sex ;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stu</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stu</span><span class="params">(Integer stu_id, Integer teacher_id, String stu_name, String time, String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.stu_id = stu_id;</span><br><span class="line">        <span class="keyword">this</span>.teacher_id = teacher_id;</span><br><span class="line">        <span class="keyword">this</span>.stu_name = stu_name;</span><br><span class="line">        <span class="keyword">this</span>.time = time;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>例如上述 <code>Employee</code> 表，<em>n = 2</em> 时，应返回第二高的薪水 <code>200</code>。如果不存在第 <em>n</em> 高的薪水，那么查询应返回 <code>null</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+------------------------+</span><br><span class="line">| getNthHighestSalary(2) |</span><br><span class="line">+------------------------+</span><br><span class="line">| 200                    |</span><br><span class="line">+------------------------+</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>解题思路：</p>
+<p>题目要求：<br>显示没有固定的N高薪水，N的确定由自定义函数传入。<br>解题思路：</p>
+<ol>
+<li><p>输出题目要求的内容所需要的语句和题目176大致是相同的，唯一不同的是limit后的数字，即start的位置。</p>
+</li>
+<li><p>limit start, count。其中start的显示值是从start+1开始的。但此处输入不能是计算式，比如：N-1</p>
+</li>
+<li><p>第N高的N，是通过自定义函数<code>getNthHighestSalary</code>的(N INT)中N传入。start必须是从N-1开始，才能显示符合题目要求的结果。比如第N=2高，如果直接用N值到limit，limit 2,1，意为从第3行开始，显示一行。所以要用N-1=1，才能表示从第二行开始。</p>
+</li>
+<li><p>这时，应通过一个替代参数实现。MySQL自定函数中的参数是静态参数，即要先定义后使用。先用declare定义类型，后通过set进行赋值。</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT</span><br><span class="line">BEGIN</span><br><span class="line">    declare m INT;</span><br><span class="line">    set m&#x3D;N-1; </span><br><span class="line">RETURN (</span><br><span class="line">      # Write your MySQL query statement below.</span><br><span class="line">      select ifnull((select distinct Salary from Employee as E order by Salary desc limit m,1),null)</span><br><span class="line">  );</span><br><span class="line">END</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
       
@@ -403,7 +406,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%80%9D%E8%80%83/" rel="tag"># 思考</a>
+            <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
           
         </div>
       
@@ -416,8 +419,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/03/08/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%BB%A3%E7%A0%81%E9%A2%98/" rel="next" title="类加载和初始化顺序代码题">
-                <i class="fa fa-chevron-left"></i> 类加载和初始化顺序代码题
+              <a href="/2021/03/16/leetcode176%E7%AC%AC%E4%BA%8C%E9%AB%98%E8%96%AA%E6%B0%B4/" rel="next" title="leetcode176第二高薪水">
+                <i class="fa fa-chevron-left"></i> leetcode176第二高薪水
               </a>
             
           </div>
@@ -425,10 +428,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/03/08/%E4%BB%8E%E6%95%B0%E7%BB%84%E6%9D%A5%E7%9C%8B%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/" rel="prev" title="从数组来看值传递和引用传递">
-                从数组来看值传递和引用传递 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,17 +479,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -578,22 +568,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Character%E5%92%8Cchar-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-text">1.Character和char 的区别：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%E5%92%8C%E8%A3%85%E7%AE%B1"><span class="nav-text">2.自动拆箱和装箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="nav-text">3.什么时候用包装类</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
