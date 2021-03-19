@@ -247,6 +247,26 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-movies">
+          <a href="/movies/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-film"></i> <br />
+            
+            观影
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -377,13 +397,13 @@
 <p><strong>输出格式</strong>：</p>
 <p>输出从 <em>n</em> 计算到 1 需要的步数。</p>
 <p><strong>输入样例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
 
 <p><strong>输出样例</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
 
 <p><strong>题解</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> n=sc.nextInt();</span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (n%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">                n=n/<span class="number">2</span>;</span><br><span class="line">                </span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                n=(<span class="number">3</span>*n+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            sum++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> n=sc.nextInt();</span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (n%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">                n=n/<span class="number">2</span>;</span><br><span class="line">                </span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                n=(<span class="number">3</span>*n+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            sum++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
