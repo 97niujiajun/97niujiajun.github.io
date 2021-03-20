@@ -15,8 +15,6 @@
 <meta name="google-site-verification" content="NjJxuvR9LOG70CuRcA0JLkarKL8DX7csf90urqsHriA" />
 <meta name="google-site-verification" content="vReF4EJ08bAOKpkJCToMy6UWWTEoY_zSf-FWFBKy4hU" />
 <meta name="360-site-verification" content="dde0107132280e269a2ec83997e70cba" />
-<meta name="bytedance-verification-code" content="1nd3UFsbyR9nZvRgETs5" />
-<meta name="sogou_site_verification" content="IDa5YF4FI7"/>
 
 
 
@@ -92,7 +90,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://niujiajun.gitee.io/2021/03/13/MySQL%E4%BA%8B%E5%8A%A1/image-20210310163731616.png">
 <meta property="article:published_time" content="2021-03-13T02:37:34.000Z">
-<meta property="article:modified_time" content="2021-03-13T02:39:41.919Z">
+<meta property="article:modified_time" content="2021-03-20T03:17:58.787Z">
 <meta property="article:author" content="NiuJiaJun">
 <meta property="article:tag" content="思考">
 <meta name="twitter:card" content="summary">
@@ -136,6 +134,12 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
+
+(function(){
+var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+
 </script>
 
 
@@ -402,44 +406,44 @@
       
 
       
-        <h1 id="事务介绍"><a href="#事务介绍" class="headerlink" title="事务介绍"></a>事务介绍</h1><p>事务:一条或多条SQL语句组成一个执行单元，其特点是这个单元要么同时成功要么同时失败。</p>
+        <h2 id="事务介绍"><a href="#事务介绍" class="headerlink" title="事务介绍"></a>事务介绍</h2><p>事务:一条或多条SQL语句组成一个执行单元，其特点是这个单元要么同时成功要么同时失败。</p>
 <p>单元中的每条SQL语句都相互依赖，形成一个整体。</p>
 <p>如果某条SQL语句执行失败或者出现错误，那么整个单元就会撤回到事务最初的状态。</p>
 <p>如果单元中所有的SQL语句都执行成功，则整个单元成功。</p>
-<h1 id="事务的操作"><a href="#事务的操作" class="headerlink" title="事务的操作"></a>事务的操作</h1><h2 id="开启事务"><a href="#开启事务" class="headerlink" title="开启事务"></a>开启事务</h2><p><code>START    TRANSACTION</code></p>
-<h2 id="回滚事务"><a href="#回滚事务" class="headerlink" title="回滚事务"></a>回滚事务</h2><p><code>ROLLBACK</code></p>
-<h2 id="提交事务"><a href="#提交事务" class="headerlink" title="提交事务"></a>提交事务</h2><p><code>COMMIT</code></p>
-<h1 id="事务的提交方式"><a href="#事务的提交方式" class="headerlink" title="事务的提交方式"></a>事务的提交方式</h1><p>事务的提交方式分两类:</p>
+<h2 id="事务的操作"><a href="#事务的操作" class="headerlink" title="事务的操作"></a>事务的操作</h2><h3 id="开启事务"><a href="#开启事务" class="headerlink" title="开启事务"></a>开启事务</h3><p><code>START    TRANSACTION</code></p>
+<h3 id="回滚事务"><a href="#回滚事务" class="headerlink" title="回滚事务"></a>回滚事务</h3><p><code>ROLLBACK</code></p>
+<h3 id="提交事务"><a href="#提交事务" class="headerlink" title="提交事务"></a>提交事务</h3><p><code>COMMIT</code></p>
+<h2 id="事务的提交方式"><a href="#事务的提交方式" class="headerlink" title="事务的提交方式"></a>事务的提交方式</h2><p>事务的提交方式分两类:</p>
 <p>自动提交（MySQL默认），手动提交。</p>
 <p><code>SELECT @@AUTOCOMMIT;</code>查看事务提交方式。[1代表自动提交，0代表手动]</p>
 <p><code>SET @@AUTOCOMMIT=数字;</code>修改事务提交方式。</p>
 <p>手动提交：执行完操作以后，必须<strong>提交事务</strong>才可以真正的持久化数据。</p>
-<h1 id="事务的四大特征（ACID）"><a href="#事务的四大特征（ACID）" class="headerlink" title="事务的四大特征（ACID）"></a>事务的四大特征（ACID）</h1><h2 id="原子性-Atomicity"><a href="#原子性-Atomicity" class="headerlink" title="原子性(Atomicity)"></a>原子性(Atomicity)</h2><p>原子性是指事务包含的所有操作，要么全部成功，要么全部失败回滚。</p>
+<h2 id="事务的四大特征（ACID）"><a href="#事务的四大特征（ACID）" class="headerlink" title="事务的四大特征（ACID）"></a>事务的四大特征（ACID）</h2><h3 id="原子性-Atomicity"><a href="#原子性-Atomicity" class="headerlink" title="原子性(Atomicity)"></a>原子性(Atomicity)</h3><p>原子性是指事务包含的所有操作，要么全部成功，要么全部失败回滚。</p>
 <p>因此事务的操作如果成功就必须要完全应用到数据库，如果操作失败则不能对数据库有任何影响。</p>
-<h2 id="一致性-Consistency"><a href="#一致性-Consistency" class="headerlink" title="一致性(Consistency)"></a>一致性(Consistency)</h2><p>一致性是指事物必须使数据库从一个一致性状态变换到另一个一致性状态。</p>
+<h3 id="一致性-Consistency"><a href="#一致性-Consistency" class="headerlink" title="一致性(Consistency)"></a>一致性(Consistency)</h3><p>一致性是指事物必须使数据库从一个一致性状态变换到另一个一致性状态。</p>
 <p>也就是说一个事务执行之前和执行之后都必须处于一致性状态。</p>
-<h2 id="隔离性-isolation"><a href="#隔离性-isolation" class="headerlink" title="隔离性(isolation)"></a>隔离性(isolation)</h2><p>隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务。</p>
+<h3 id="隔离性-isolation"><a href="#隔离性-isolation" class="headerlink" title="隔离性(isolation)"></a>隔离性(isolation)</h3><p>隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务。</p>
 <p>不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。</p>
-<h2 id="持久性-durability"><a href="#持久性-durability" class="headerlink" title="持久性(durability)"></a>持久性(durability)</h2><p>持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的。</p>
+<h3 id="持久性-durability"><a href="#持久性-durability" class="headerlink" title="持久性(durability)"></a>持久性(durability)</h3><p>持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的。</p>
 <p>即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。</p>
-<h1 id="事务的隔离级别-隔离性"><a href="#事务的隔离级别-隔离性" class="headerlink" title="事务的隔离级别(隔离性)"></a>事务的隔离级别(隔离性)</h1><p>多个客户端操作时，各个客户端的事务之间应该是隔离的，相互独立的，不受影响的 。</p>
+<h2 id="事务的隔离级别-隔离性"><a href="#事务的隔离级别-隔离性" class="headerlink" title="事务的隔离级别(隔离性)"></a>事务的隔离级别(隔离性)</h2><p>多个客户端操作时，各个客户端的事务之间应该是隔离的，相互独立的，不受影响的 。</p>
 <p>而如果多个事务操作同一批数据时，就会产生不同的问题，我们需要设置不同的隔离级别来解决这些问题。</p>
-<h2 id="隔离级别分类"><a href="#隔离级别分类" class="headerlink" title="隔离级别分类"></a>隔离级别分类</h2><p><span style="color:red">注意：MySQL默认是可重复读级别，Oracle默认是读已提交级别</span></p>
+<h3 id="隔离级别分类"><a href="#隔离级别分类" class="headerlink" title="隔离级别分类"></a>隔离级别分类</h3><p><span style="color:red">注意：MySQL默认是可重复读级别，Oracle默认是读已提交级别</span></p>
 <p><img src="/2021/03/13/MySQL%E4%BA%8B%E5%8A%A1/image-20210310163731616.png" alt="image-20210310163731616"></p>
 <p>随着安全级别的提高，效率也会越来越低。</p>
 <p><code>SELECT @@TX_ISOLATION;</code>查询数据库隔离级别。</p>
 <p><code>SET GLOBAL TRANSACTION    IOLATION LEVEL 级别字符串;</code>修改数据库隔离级别。</p>
 <p>修改后记着重新连接一下数据库。</p>
-<h2 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h2><p><strong>在一个事务处理过程中读取到了另一个未提交事务中订单数据，导致两次查询结果不一致。</strong></p>
+<h3 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h3><p><strong>在一个事务处理过程中读取到了另一个未提交事务中订单数据，导致两次查询结果不一致。</strong></p>
 <p>具体体现：</p>
 <p>一个窗口更新数据，但还没有<span style="color:red">提交事务</span>，另一个窗口查询，查询到了更新的数据。</p>
 <p>即：一个事务还没处理完成，另个事务就介入了。</p>
-<h2 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h2><p><strong>在一个事务处理过程中，读取到了另一个事务中修改并已经提交的数据，导致两次查询结果不一致。</strong></p>
+<h3 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h3><p><strong>在一个事务处理过程中，读取到了另一个事务中修改并已经提交的数据，导致两次查询结果不一致。</strong></p>
 <p>举个例子：</p>
 <p>两个窗口<span style="color:red">同时</span>开启事务，一个事务查询是A结果，另一个事务进行更改并提交(已解决脏读)；第一个事务再查，发现查询的结果变了。</p>
 <p>现实中的问题，小王早上查一个数，下午老板再查，数字不一样了，就不trust小王了。</p>
 <p>那正确的应该是：第一个事务提交了以后，再建一个事务查，才能查出来更改后的数据，这才是对的逻辑。</p>
-<h2 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h2><p><strong>查询某数据不存在，准备插入此记录，但执行插入时发现此记录已存在，无法插入。或查询数据不存在执行删除操作，却发现删除成功。</strong></p>
+<h3 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h3><p><strong>查询某数据不存在，准备插入此记录，但执行插入时发现此记录已存在，无法插入。或查询数据不存在执行删除操作，却发现删除成功。</strong></p>
 <p>举个例子(隔离级别：repeatable read)：</p>
 <p>开启两个事务（窗口），A添加记录，B再添加，这时候图形界面一直转圈圈。等到A提交事务成功，B会结束转圈圈并报错，说已经有了。</p>
 <p>或者：A添加，B删除不存在的A刚刚添加的，竟发现，成功啦！</p>
@@ -647,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E4%BB%8B%E7%BB%8D"><span class="nav-text">事务介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-text">事务的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E4%BA%8B%E5%8A%A1"><span class="nav-text">开启事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E6%BB%9A%E4%BA%8B%E5%8A%A1"><span class="nav-text">回滚事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E4%BA%8B%E5%8A%A1"><span class="nav-text">提交事务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%8F%90%E4%BA%A4%E6%96%B9%E5%BC%8F"><span class="nav-text">事务的提交方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E5%BE%81%EF%BC%88ACID%EF%BC%89"><span class="nav-text">事务的四大特征（ACID）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7-Atomicity"><span class="nav-text">原子性(Atomicity)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-Consistency"><span class="nav-text">一致性(Consistency)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E6%80%A7-isolation"><span class="nav-text">隔离性(isolation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E6%80%A7-durability"><span class="nav-text">持久性(durability)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB-%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="nav-text">事务的隔离级别(隔离性)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB"><span class="nav-text">隔离级别分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%8F%E8%AF%BB"><span class="nav-text">脏读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB"><span class="nav-text">不可重复读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BB%E8%AF%BB"><span class="nav-text">幻读</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E4%BB%8B%E7%BB%8D"><span class="nav-text">事务介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-text">事务的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E4%BA%8B%E5%8A%A1"><span class="nav-text">开启事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BB%9A%E4%BA%8B%E5%8A%A1"><span class="nav-text">回滚事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E4%BA%8B%E5%8A%A1"><span class="nav-text">提交事务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%8F%90%E4%BA%A4%E6%96%B9%E5%BC%8F"><span class="nav-text">事务的提交方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E5%BE%81%EF%BC%88ACID%EF%BC%89"><span class="nav-text">事务的四大特征（ACID）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7-Atomicity"><span class="nav-text">原子性(Atomicity)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-Consistency"><span class="nav-text">一致性(Consistency)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E6%80%A7-isolation"><span class="nav-text">隔离性(isolation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E6%80%A7-durability"><span class="nav-text">持久性(durability)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB-%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="nav-text">事务的隔离级别(隔离性)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB"><span class="nav-text">隔离级别分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%8F%E8%AF%BB"><span class="nav-text">脏读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB"><span class="nav-text">不可重复读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BB%E8%AF%BB"><span class="nav-text">幻读</span></a></li></ol></li></ol></div>
             
 
           </div>

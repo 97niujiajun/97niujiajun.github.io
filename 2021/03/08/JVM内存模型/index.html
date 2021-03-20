@@ -15,8 +15,6 @@
 <meta name="google-site-verification" content="NjJxuvR9LOG70CuRcA0JLkarKL8DX7csf90urqsHriA" />
 <meta name="google-site-verification" content="vReF4EJ08bAOKpkJCToMy6UWWTEoY_zSf-FWFBKy4hU" />
 <meta name="360-site-verification" content="dde0107132280e269a2ec83997e70cba" />
-<meta name="bytedance-verification-code" content="1nd3UFsbyR9nZvRgETs5" />
-<meta name="sogou_site_verification" content="IDa5YF4FI7"/>
 
 
 
@@ -96,7 +94,7 @@
 <meta property="og:image" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426175411428-34722603.png">
 <meta property="og:image" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426154633834-741444326.jpg">
 <meta property="article:published_time" content="2021-03-08T03:44:25.000Z">
-<meta property="article:modified_time" content="2021-03-08T03:46:19.783Z">
+<meta property="article:modified_time" content="2021-03-20T03:16:24.946Z">
 <meta property="article:author" content="NiuJiaJun">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://niujiajun.gitee.io/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png">
@@ -139,6 +137,12 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
+
+(function(){
+var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+
 </script>
 
 
@@ -405,7 +409,7 @@
       
 
       
-        <h1 id="1-JVM内存模型"><a href="#1-JVM内存模型" class="headerlink" title="1.JVM内存模型"></a>1.JVM内存模型</h1><p><img src="/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png" alt="image-20210204113709298"></p>
+        <h2 id="1-JVM内存模型"><a href="#1-JVM内存模型" class="headerlink" title="1.JVM内存模型"></a>1.JVM内存模型</h2><p><img src="/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/image-20210204113709298.png" alt="image-20210204113709298"></p>
 <p>​                                                    JDK1.6版本的结构图</p>
 <p>其中，程序计数器、虚拟机栈和本地方法栈这三个区域属于线程私有的，只存在于线程的生命周期内，线程结束之后就会消失。</p>
 <p>细化后：</p>
@@ -419,7 +423,7 @@
 <li>类元信息（Klass）</li>
 <li>运行时常量池（Runtime Constant Pool）</li>
 </ul>
-<h1 id="2-两个概念"><a href="#2-两个概念" class="headerlink" title="2.两个概念"></a>2.两个概念</h1><h2 id="永久代PermGen"><a href="#永久代PermGen" class="headerlink" title="永久代PermGen"></a>永久代PermGen</h2><p><strong>JDK8以前，方法区由永久代实现，且存在JVM内存中，逻辑上属于堆的一部分！</strong></p>
+<h2 id="2-两个概念"><a href="#2-两个概念" class="headerlink" title="2.两个概念"></a>2.两个概念</h2><h3 id="永久代PermGen"><a href="#永久代PermGen" class="headerlink" title="永久代PermGen"></a>永久代PermGen</h3><p><strong>JDK8以前，方法区由永久代实现，且存在JVM内存中，逻辑上属于堆的一部分！</strong></p>
 <p>只有HotSpot JVM有永久代，HotSpot JVM结构如下：</p>
 <p><img src="/2021/03/08/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/584866-20170426175411428-34722603.png" alt="img"></p>
 <p>1.虚拟机栈和本地方法栈合一起了</p>
@@ -437,7 +441,7 @@
 <p>1.JDK8中类加载（方法区的功能）已经不在永久代PerGem中了，而是元空间Metaspace中。</p>
 <p>2.字符串常量由永久代转移到堆中。</p>
 <p>3.持久代已不存在，PermSize MaxPermSize参数已移除。</p>
-<h2 id="元空间Metaspace"><a href="#元空间Metaspace" class="headerlink" title="元空间Metaspace"></a>元空间Metaspace</h2><p><strong>JDK8以后，方法区由元空间实现，不存在于JVM内存中了，而是直接内存中。</strong></p>
+<h3 id="元空间Metaspace"><a href="#元空间Metaspace" class="headerlink" title="元空间Metaspace"></a>元空间Metaspace</h3><p><strong>JDK8以后，方法区由元空间实现，不存在于JVM内存中了，而是直接内存中。</strong></p>
 <p>（直接内存位于本地内存，不属于JVM内存，但是也会在物理内存耗尽的时候报OOM,所以也讲一下。</p>
 <p>​    在jdk1.4中加入了NIO（New Input/Output）类，引入了一种基于通道（channel）与缓冲区（buffer）的新IO方式，它可以使用native函数直接分配堆外内存，然后通过存储在java堆中的DirectByteBuffer对象作为这块内存的引用进行操作，这样可以在一些场景下<strong>大大提高IO性能，避免了在java堆和native堆来回复制数据</strong>。）</p>
 <p>​    元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制，但可以通过设置参数来指定元空间的大小。</p>
@@ -637,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-text">1.JVM内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%9A"><span class="nav-text">方法区：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5"><span class="nav-text">2.两个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E4%BB%A3PermGen"><span class="nav-text">永久代PermGen</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%96%B9%E6%B3%95%E5%8C%BA%E5%92%8C%E6%B0%B8%E4%B9%85%E4%BB%A3"><span class="nav-text">关于方法区和永久代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK8%E6%B0%B8%E4%B9%85%E4%BB%A3%E7%9A%84%E5%BA%9F%E5%BC%83"><span class="nav-text">JDK8永久代的废弃</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4Metaspace"><span class="nav-text">元空间Metaspace</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-text">1.JVM内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA%EF%BC%9A"><span class="nav-text">方法区：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5"><span class="nav-text">2.两个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E4%BB%A3PermGen"><span class="nav-text">永久代PermGen</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%96%B9%E6%B3%95%E5%8C%BA%E5%92%8C%E6%B0%B8%E4%B9%85%E4%BB%A3"><span class="nav-text">关于方法区和永久代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK8%E6%B0%B8%E4%B9%85%E4%BB%A3%E7%9A%84%E5%BA%9F%E5%BC%83"><span class="nav-text">JDK8永久代的废弃</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4Metaspace"><span class="nav-text">元空间Metaspace</span></a></li></ol></li></ol></div>
             
 
           </div>
