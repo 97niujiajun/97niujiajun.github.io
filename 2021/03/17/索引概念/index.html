@@ -81,18 +81,21 @@
 
 
 
-<meta name="description" content="定义​        索引可以帮助MySQL高校获取数据的数据结构。即索引是数据结构。数据库在执行查询的时候，如果没有任何索引存在，会采用全表扫描的方式进行查找。如果存在索引，则会先去索引列表中定位到特定的行或者定位到数据，从而可以极大地减少查询的行数，增加查询速度。 ​        索引建立的本身是为了减少磁盘IO的次数，在此基础上，在某个作为索引的数据上经常更新，或插入或删除，确实会对索引的">
+<meta name="description" content="定义​        索引可以帮助MySQL高效获取数据的数据结构。即索引是数据结构。数据库在执行查询的时候，如果没有任何索引存在，会采用全表扫描的方式进行查找。如果存在索引，则会先去索引列表中定位到特定的行或者定位到数据，从而可以极大地减少查询的行数，增加查询速度。 ​        索引建立的本身是为了减少磁盘IO的次数，在此基础上，在某个作为索引的数据上经常更新，或插入或删除，确实会对索引的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="索引概念">
 <meta property="og:url" content="https://niujiajun.gitee.io/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/index.html">
 <meta property="og:site_name" content="Niu_Blog">
-<meta property="og:description" content="定义​        索引可以帮助MySQL高校获取数据的数据结构。即索引是数据结构。数据库在执行查询的时候，如果没有任何索引存在，会采用全表扫描的方式进行查找。如果存在索引，则会先去索引列表中定位到特定的行或者定位到数据，从而可以极大地减少查询的行数，增加查询速度。 ​        索引建立的本身是为了减少磁盘IO的次数，在此基础上，在某个作为索引的数据上经常更新，或插入或删除，确实会对索引的">
+<meta property="og:description" content="定义​        索引可以帮助MySQL高效获取数据的数据结构。即索引是数据结构。数据库在执行查询的时候，如果没有任何索引存在，会采用全表扫描的方式进行查找。如果存在索引，则会先去索引列表中定位到特定的行或者定位到数据，从而可以极大地减少查询的行数，增加查询速度。 ​        索引建立的本身是为了减少磁盘IO的次数，在此基础上，在某个作为索引的数据上经常更新，或插入或删除，确实会对索引的">
 <meta property="og:locale">
 <meta property="og:image" content="https://niujiajun.gitee.io/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/v2-2ce9fa4e6d645ed4f105b8334fc2c488_720w.jpg">
 <meta property="og:image" content="https://niujiajun.gitee.io/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/v2-19a914d06e25744c8a8e0d1922e379d4_720w.jpg">
 <meta property="og:image" content="https://niujiajun.gitee.io/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/image-20210316205839614.png">
+<meta property="og:image" content="https://niujiajun.gitee.io/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/image-20210325004702029.png">
+<meta property="og:image" content="https://niujiajun.gitee.io/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/image-20210325121205697.png">
+<meta property="og:image" content="https://niujiajun.gitee.io/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/image-20210325121330420.png">
 <meta property="article:published_time" content="2021-03-17T06:05:15.000Z">
-<meta property="article:modified_time" content="2021-03-20T03:21:37.341Z">
+<meta property="article:modified_time" content="2021-03-25T04:13:58.177Z">
 <meta property="article:author" content="NiuJiaJun">
 <meta property="article:tag" content="思考">
 <meta name="twitter:card" content="summary">
@@ -408,25 +411,105 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
 
       
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>​        索引可以帮助MySQL高校获取数据的数据结构。即索引是数据结构。数据库在执行查询的时候，如果没有任何索引存在，会采用全表扫描的方式进行查找。如果存在索引，则会先去索引列表中定位到特定的行或者定位到数据，从而可以极大地减少查询的行数，增加查询速度。</p>
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>​        索引可以帮助MySQL高效获取数据的数据结构。即索引是数据结构。数据库在执行查询的时候，如果没有任何索引存在，会采用全表扫描的方式进行查找。如果存在索引，则会先去索引列表中定位到特定的行或者定位到数据，从而可以极大地减少查询的行数，增加查询速度。</p>
 <p>​        索引建立的本身是为了<strong>减少磁盘IO的次数</strong>，在此基础上，在某个作为索引的数据上经常更新，或插入或删除，确实会对索引的效率是有影响的（索引的效用并非一直有效，根据增删改查的百分比分布，动态计算最佳索引才是一个难点）</p>
 <p>​        索引能让数据库查询数据的速度上升， 而使写入数据的速度下降，原因很简单的， 因为平衡树这个结构必须一直维持在一个正确的状态， 增删改数据都会改变平衡树各节点中的索引数据内容，破坏树结构， 因此，在每次数据改变时， DBMS（数据库管理系统）必须去重新梳理树（索引）的结构以确保它的正确，这会带来不小的性能开销，也就是为什么<strong>索引会给查询以外的操作带来副作用</strong>的原因。</p>
 <p><span style="color:red"><strong>索引可以增加查询速度，但也会降低写入数据时的性能。</strong></span></p>
-<h2 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h2><p>聚集索引（主键索引）：在数据库里面，所有行数都会按照主键索引进行排序。</p>
+<h2 id="按物理存储角度"><a href="#按物理存储角度" class="headerlink" title="按物理存储角度"></a>按物理存储角度</h2><h3 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h3><p>聚集索引（主键索引）：在数据库里面，所有行数都会按照主键索引进行排序。聚集索引并不是一种单独的索引类型，而是一种数据存储方式。</p>
 <p>​        我们平时建表的时候都会为表加上主键， 在某些关系数据库中， 如果建表时不指定主键，数据库会拒绝建表的语句执行。 事实上， 一个加了主键的表，并不能被称之为「表」。一个没加主键的表，它的数据无序的放置在磁盘存储器上，一行一行的排列的很整齐， 跟我认知中的「表」很接近。如果给表上了主键，那么表在磁盘上的存储结构就由整齐排列的结构转变成了<strong>树状结构</strong>，也就是上面说的「平衡树」结构，换句话说，就是整个表就变成了一个索引。没错， 再说一遍， 整个表变成了一个索引，也就是所谓的「<strong>聚集索引</strong>」。 这就是为什么一个表只能有一个主键， 一个表只能有一个「聚集索引」，因为<strong>主键的作用</strong>就是把「表」的数据格式转换成「索引（平衡树）」的格式放置。</p>
 <p><img src="/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/v2-2ce9fa4e6d645ed4f105b8334fc2c488_720w.jpg" alt="img"></p>
 <p>​        上图就是带有主键的表（聚集索引）的结构图。其中树的所有结点（底部除外）的数据都是由主键字段中的数据构成，也就是通常我们指定主键的id字段。最下面部分是真正表中的数据。 假如我们执行一个SQL语句：</p>
 <p><code>select * from table where id = 1256;</code></p>
 <p>​        首先根据索引定位到1256这个值所在的叶结点，然后再通过叶结点取到id等于1256的数据行。 这里不讲解平衡树的运行细节， 但是从上图能看出，树一共有三层， 从根节点至叶节点只需要经过三次查找就能得到结果。如下图</p>
 <p><img src="/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/v2-19a914d06e25744c8a8e0d1922e379d4_720w.jpg" alt="img"></p>
-<p> 聚集索引叶子结点存储是表里面的所有行数据。</p>
-<h2 id="非聚集索引"><a href="#非聚集索引" class="headerlink" title="非聚集索引"></a>非聚集索引</h2><p><img src="/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/image-20210316205839614.png" alt="image-20210316205839614"></p>
+<p> 聚集索引<strong>叶子结点</strong>存储是表里面的所有行数据。（注意：非叶子节点存主键，叶子存数据）</p>
+<p><strong>聚集索引中的每个叶子节点包含主键值、事务ID、回滚指针</strong>(rollback pointer用于事务和MVCC）和余下的列(如col2)。</p>
+<h3 id="非聚集索引"><a href="#非聚集索引" class="headerlink" title="非聚集索引"></a>非聚集索引</h3><p><img src="/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/image-20210316205839614.png" alt="image-20210316205839614"></p>
 <p>非聚集索引：就是给普通字段加上索引。        </p>
-<p>​        非聚集索引的叶子结点存储的是聚集索引键，而不存储表里面所有的行数据，所以在查找的时候，只能查找到聚集索引键，再通过聚集索引去表里面查找到数据。</p>
-<h2 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h2><p>联合索引：就是好几个字段组成的索引，称为联合索引。</p>
-<p>就比如：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>建立索引</span><br><span class="line"><span class="keyword">create</span> index index_birthday <span class="keyword">on</span> user_info(birthday);</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>查询生日在<span class="number">1991</span>年<span class="number">11</span>月<span class="number">1</span>日出生用户的用户名</span><br><span class="line"><span class="keyword">select</span> user_name <span class="keyword">from</span> user_info <span class="keyword">where</span> birthday <span class="operator">=</span> <span class="string">&#x27;1991-11-1&#x27;</span></span><br><span class="line"></span><br><span class="line">按非聚集索引来：</span><br><span class="line">通过非聚集索引index_birthday查找birthday等于<span class="number">1991</span><span class="number">-11</span><span class="number">-1</span>的所有记录的主键ID值</span><br><span class="line">然后，通过得到的主键ID值执行聚集索引查找，找到主键ID值对就的真实数据（数据行）存储的位置</span><br><span class="line">最后， 从得到的真实数据中取得user_name字段的值返回， 也就是取得最终的结果</span><br><span class="line"></span><br><span class="line">按联合索引来：</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>建立联合索引</span><br><span class="line"><span class="keyword">create</span> index index_birthday_and_user_name <span class="keyword">on</span> user_info(birthday, user_name);</span><br><span class="line">通过非聚集索引查找到birthday等于<span class="number">1991</span><span class="number">-11</span><span class="number">-1</span>的所有记录的主键ID值，</span><br><span class="line">但这些存储ID值的叶节点，不仅存储了ID值，还存储了user_name字段的值，</span><br><span class="line">因此省略了通过主键ID执行聚集索引查找这个步骤，大大提高了查询性能。</span><br></pre></td></tr></table></figure>
+<p>​        非聚集索引的叶子结点存储的是聚集索引键（也可以称为数据存放的地址），而不存储表里面所有的行数据，所以在查找的时候，只能查找到聚集索引键，再通过聚集索引去表里面查找到数据。</p>
+<p><strong>非聚集索引：表数据存储顺序与索引顺序无关</strong>。对于非聚集索引，<strong>叶结点包含索引字段值及指向数据页数据行的逻辑指针，其行数量与数据表行数据量一致</strong>。</p>
+<h3 id="使用场合"><a href="#使用场合" class="headerlink" title="使用场合"></a>使用场合</h3><p>建议使用聚集索引的场合为：</p>
+<ul>
+<li><p>某列包含了小数目的不同值。</p>
+</li>
+<li><p>排序和范围查找。 非聚集索引的记录的物理顺序和索引的顺序不一致。</p>
+</li>
+<li><p>含有大量非重复值的列；</p>
+</li>
+</ul>
+<p>其他方面的区别：</p>
+<p>1.聚集索引和非聚集索引都采用了 B+树的结构，但非聚集索引的叶子层并 不与实际的数据页相重叠，而采用叶子层包含一个指向表中的记录在数据页中 的指针的方式。聚集索引的叶节点就是数据节点，而非聚集索引的叶节点仍然 是索引节点。</p>
+<p>2.非聚集索引添加记录时，不会引起数据顺序的重组。</p>
+<p>建议使用非聚集索引的场合为：</p>
+<ul>
+<li><p>此列包含了大数目的不同值；</p>
+</li>
+<li><p>频繁更新的列</p>
+</li>
+</ul>
+<h2 id="按功能（逻辑）角度"><a href="#按功能（逻辑）角度" class="headerlink" title="按功能（逻辑）角度"></a>按功能（逻辑）角度</h2><ul>
+<li><p>普通索引</p>
+<p>最基本的索引，没有任何限制</p>
+</li>
+<li><p>唯一索引</p>
+<p>索引列的值必须唯一，但允许有空值。如果是组合索引，则列值组合必须唯一。所谓的唯一，就是指数据不能重复。</p>
+</li>
+<li><p>主键索引</p>
+<p>一种特殊的唯一索引，不允许有空值。在建表时有主键列同时创建主键索引。</p>
+</li>
+<li><p>联合索引</p>
+<p>顾名思义，就是将单列索引进行组合，好几个字段组成的索引。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//建立索引</span></span><br><span class="line"><span class="function">create index index_birthday on <span class="title">user_info</span><span class="params">(birthday)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询生日在1991年11月1日出生用户的用户名</span></span><br><span class="line">select user_name from user_info where birthday = <span class="string">&#x27;1991-11-1&#x27;</span></span><br><span class="line"></span><br><span class="line">按非聚集索引来：</span><br><span class="line">通过非聚集索引index_birthday查找birthday等于<span class="number">1991</span>-<span class="number">11</span>-<span class="number">1</span>的所有记录的主键ID值</span><br><span class="line">然后，通过得到的主键ID值执行聚集索引查找，找到主键ID值对就的真实数据（数据行）存储的位置</span><br><span class="line">最后， 从得到的真实数据中取得user_name字段的值返回， 也就是取得最终的结果</span><br><span class="line"></span><br><span class="line">按联合索引来：</span><br><span class="line"><span class="comment">//建立联合索引</span></span><br><span class="line"><span class="function">create index index_birthday_and_user_name on <span class="title">user_info</span><span class="params">(birthday, user_name)</span></span>;</span><br><span class="line">通过非聚集索引查找到birthday等于<span class="number">1991</span>-<span class="number">11</span>-<span class="number">1</span>的所有记录的主键ID值，</span><br><span class="line">但这些存储ID值的叶节点，不仅存储了ID值，还存储了user_name字段的值，</span><br><span class="line">因此省略了通过主键ID执行聚集索引查找这个步骤，大大提高了查询性能。</span><br></pre></td></tr></table></figure>
 
+
+</li>
+<li><p>外键索引</p>
+<p>只有InnoDB引擎支持外键索引，用来保证数据的一致性、完整性和实现级联操作。</p>
+</li>
+<li><p>全文索引</p>
+<p>快速匹配全部文档的方式。InnoDB引擎5.6版本之后才支持全文索引但是可以用插件。MyISAM引擎一直支持，MEMORY不支持。</p>
+</li>
+</ul>
+<h2 id="按照结构"><a href="#按照结构" class="headerlink" title="按照结构"></a>按照结构</h2><ul>
+<li><p>BTree索引：MySQL使用最频繁的一个索引数据结构，是InnoDB和MyISAM存储引擎默认的索引类型，底层基于B+Tree数据结构。</p>
+</li>
+<li><p>Hash索引：MySQL中Memory存储引擎默认支持的索引类型。</p>
+</li>
+<li><p>位图索引：位图索引是一种针对多个字段的简单查询设计一种特殊的索引，适用范围比较小，只适用于字段值固定并且值的种类很少的情况，比如性别，只能有男和女，或者级别，状态等，并且只有在同时对多个这样的字段查询时才能体现出位图的优势。</p>
+<p><strong>create bitmap index idx_name on table(col_name)</strong></p>
+<p>位图的基本思想就是对每一个条件都用0或者1来表示，如有5条记录，性别分别是男，女，男，男，女，那么如果使用位图索引就会建立两个位图，对应男的10110和对应女的01001,这样做有什么好处呢，就是如果同时对多个这种类型的字段进行and或or查询时，可以使用按位与和按位或来直接得到结果了。</p>
+</li>
+</ul>
+<h2 id="创建索引的原则"><a href="#创建索引的原则" class="headerlink" title="创建索引的原则"></a>创建索引的原则</h2><h3 id="应该创建索引的情况"><a href="#应该创建索引的情况" class="headerlink" title="应该创建索引的情况"></a>应该创建索引的情况</h3><ul>
+<li>经常需要搜索的列，加快查询速度；</li>
+<li>主键列上，强调唯一性；</li>
+<li>经常用在连接的列，这些列主要是一些外键，可以加快连接的速度；</li>
+<li>经常需要根据范围进行搜索的列上创建索引，因为索引已经排序，其指定的范围是连续的；</li>
+<li>经常需要排序的列上创建索引，因为索引已经排序，这样查询可以利用索引的排序，加快排序查询时间；</li>
+<li>经常使用在WHERE子句中的列上面创建索引，加快条件的判断速度。</li>
+</ul>
+<h3 id="不应该创建索引的情况"><a href="#不应该创建索引的情况" class="headerlink" title="不应该创建索引的情况"></a>不应该创建索引的情况</h3><ul>
+<li>在查询中很少使用或者参考的列不应该创建索引。因为很少使用到，并不能提高查询速度。相反，由于增加了索引，反而降低了系统的维护速度和增大了空间需求。</li>
+<li>只有很少数据值的列也不应该增加索引。</li>
+<li>这是因为，由于这些列的取值很少，例如人事表的性别列，在查询的结果中，结果集的数据行占了表中数据行的很大比例，即需要在表中搜索的数据行的比例很大。增加索引，并不能明显加快检索速度。</li>
+<li>定义为text, image和bit数据类型的列不应该增加索引。这是因为，这些列的数据量要么相当大，要么取值很少。</li>
+<li>当修改性能远远大于检索性能时，不应该创建索引。这是因为，修改性能和检索性能是互相矛盾的。当增加索引时，会提高检索性能，但是会降低修改性能。当减少 索引时，会提高修改性能，降低检索性能。因此，当修改性能远远大于检索性能时，不应该创建索引。</li>
+</ul>
+<h2 id="主索引与二级索引"><a href="#主索引与二级索引" class="headerlink" title="主索引与二级索引"></a>主索引与二级索引</h2><p>主索引就是聚集索引。拿聚集索引来说：InnoDB存储引擎会自动为主键建立聚集索引。聚集索引的叶子节点包含完整的用户记录。</p>
+<p>在我们可以为感兴趣的列建立二级索引。二级索引的叶子节点包含的用户记录由索引列和主键组成。</p>
+<p>如果想通过二级索引查找完整的用户记录，需要执行回表操作，也就是在<span style="color:red">通过二级索引找到主键值之后，再到聚集索引中查找完整的用户记录。</span></p>
+<h2 id="不同物理结构不同的主索引与二级索引"><a href="#不同物理结构不同的主索引与二级索引" class="headerlink" title="不同物理结构不同的主索引与二级索引"></a>不同物理结构不同的主索引与二级索引</h2><p>InnoDB为聚集索引，MyISAM为非聚集索引。</p>
+<p>InnoDB的二级索引与主键索引有很大的不同。InnoDB的二级索引的叶子包含主键值，而不是行指针(row pointers)，这减小了移动数据或者数据页面分裂时维护二级索引的开销，因为InnoDB不需要更新索引的行指针。</p>
+<p>INNODB和MYISAM的主键索引与二级索引的对比：</p>
+<p><img src="/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/image-20210325004702029.png" alt="image-20210325004702029"></p>
+<p>InnoDB的的二级索引的叶子节点存放的是KEY字段加主键值。因此，通过二级索引查询首先查到是主键值，然后InnoDB再根据查到的主键值通过主键索引找到相应的数据块。而MyISAM的二级索引叶子节点存放的还是列值与行号的组合，叶子节点中保存的是数据的物理地址。所以可以看出MYISAM的主键索引和二级索引没有任何区别，主键索引仅仅只是一个叫做PRIMARY的唯一、非空的索引，且MYISAM引擎中可以不设主键。</p>
+<p><strong>我们重点关注聚簇索引，看上去聚簇索引的效率明显要低于非聚簇索引，因为每次使用辅助索引检索都要经过两次B+树查找，这不是多此一举吗？聚簇索引的优势在哪？</strong></p>
+<p>1 由于行数据和叶子节点存储在一起，这样主键和行数据是一起被载入内存的，找到叶子节点就可以立刻将行数据返回了，如果按照主键Id来组织数据，获得数据更快。</p>
+<p>2 辅助索引使用主键作为”指针” 而不是使用地址值作为指针的好处是，减少了当出现行移动或者数据页分裂时辅助索引的维护工作，使用主键值当作指针会让辅助索引占用更多的空间，换来的好处是InnoDB在移动行时无须更新辅助索引中的这个”指针”。也就是说行的位置（实现中通过16K的Page来定位，后面会涉及）会随着数据库里数据的修改而发生变化（前面的B+树节点分裂以及Page的分裂），使用聚簇索引就可以保证不管这个主键B+树的节点如何变化，辅助索引树都不受影响。</p>
+<h2 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h2><h3 id="添加索引"><a href="#添加索引" class="headerlink" title="添加索引"></a>添加索引</h3><p><img src="/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/image-20210325121205697.png" alt="image-20210325121205697"></p>
+<h3 id="查询索引"><a href="#查询索引" class="headerlink" title="查询索引"></a>查询索引</h3><p>上述自己添加了两个，但实际情况呢？</p>
+<p><img src="/2021/03/17/%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5/image-20210325121330420.png" alt="image-20210325121330420"></p>
+<p>会自动创建主键索引。</p>
 
       
     </div>
@@ -629,7 +712,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="nav-text">聚集索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="nav-text">非聚集索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95"><span class="nav-text">联合索引</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E7%89%A9%E7%90%86%E5%AD%98%E5%82%A8%E8%A7%92%E5%BA%A6"><span class="nav-text">按物理存储角度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="nav-text">聚集索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95"><span class="nav-text">非聚集索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E5%90%88"><span class="nav-text">使用场合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E5%8A%9F%E8%83%BD%EF%BC%88%E9%80%BB%E8%BE%91%EF%BC%89%E8%A7%92%E5%BA%A6"><span class="nav-text">按功能（逻辑）角度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E7%85%A7%E7%BB%93%E6%9E%84"><span class="nav-text">按照结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E5%8E%9F%E5%88%99"><span class="nav-text">创建索引的原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E8%AF%A5%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">应该创建索引的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%BA%94%E8%AF%A5%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">不应该创建索引的情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E7%B4%A2%E5%BC%95%E4%B8%8E%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95"><span class="nav-text">主索引与二级索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84%E4%B8%8D%E5%90%8C%E7%9A%84%E4%B8%BB%E7%B4%A2%E5%BC%95%E4%B8%8E%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95"><span class="nav-text">不同物理结构不同的主索引与二级索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C"><span class="nav-text">索引操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%B4%A2%E5%BC%95"><span class="nav-text">添加索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%B4%A2%E5%BC%95"><span class="nav-text">查询索引</span></a></li></ol></li></ol></div>
             
 
           </div>
